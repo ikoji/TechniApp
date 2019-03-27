@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Make site responsive on mobile/tablet -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>TechnicApp</title>
+		<link 
+			rel="stylesheet" 
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" 
+			integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" 
+			crossorigin="anonymous">
+		<link 
+			rel="stylesheet" 
+			href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+		<link 
+			rel="stylesheet" 
+			type="text/css" 
+			href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>
+		<link 
+			rel="stylesheet" 
+			href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
+			integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" 
+			crossorigin="anonymous">
+		<link 
+			rel="stylesheet" 
+			href="/stylesheets/main.css">
+	</head>
+	<body>
+
+		<nav class="navbar sticky-top navbar-expand-lg navbar-default navbar-dark bg-danger">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/">TechniApp <i class="fas fa-rocket"></i></a>
+
+				</div>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+					<ul class="nav navbar-nav ">
+						<% if(!currentUser){ %>
+							<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+							<li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+						<% } else { %>
+							<li class="nav-item"><a class="nav-link">Hi <%= currentUser.username %></a></li>
+							<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+						<% } %>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<% if(error && error.length > 0){ %>
+			<div class="container">
+				<div class="alert alert-danger mt-3 mx-5" role="alert">
+					<%= error %>
+				</div>
+			</div>
+		<% } %>
+
+		<% if(success && success.length > 0){ %>
+			<div class="container">
+				<div class="alert alert-success mt-3 mx-5" role="alert">
+					<%= success %>
+				</div>
+			</div>
+		<% } %>
+
+		<div class="container my-4">

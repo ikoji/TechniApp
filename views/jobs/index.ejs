@@ -1,0 +1,62 @@
+<% include ../partials/header %>
+
+<div class="card my-4 mx-md-5">
+    <div class="card-header">
+        
+        <div class="row align-items-center">
+            <div class="col-auto mr-auto">
+                <h3 class="headtitle text-dark"><strong>Jobs</strong></h3>
+            </div>
+            <div class="col-auto ml-auto">
+                <a class="btn btn-outline-success btn-md" href="/jobs/new">Add New Job</a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body my-md-2">
+        <div class="table-responsive">
+            <table class="table table-hover table-striped text-center" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th class="align-middle" scope="col">Job ID</th>
+                        <th class="align-middle" scope="col">Customer Name</th>
+                        <th class="align-middle" scope="col">Job Address</th>
+                        <th class="align-middle" scope="col">Phone Number</th>
+                        <th class="align-middle" scope="col">Job Status</th>
+                        <th class="align-middle" scope="col">Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody data-link="row" class="rowlink">
+                    <% jobs.forEach(function(job){ %>
+                        <tr>
+                            <td class="align-middle">
+                                <a href="/jobs/<%= job._id %>">
+                                    <strong><%= job.jobId %></strong>
+                                </a>
+                            </td>
+                            <td class="align-middle">
+                                <%= job.customerName %>
+                            </td>
+                            <td class="align-middle">
+                                <%= job.address.street %>, <%= job.address.city %> <%= job.address.province %>
+                            </td>
+                            <td class="align-middle">
+                                <%= job.phone %>
+                            </td>
+                            <td class="align-middle">
+                                <%= job.status %>
+                            </td>
+                            <td class="align-middle">
+                                <%= moment(job.modifiedAt).fromNow() %>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">
+        Updated yesterday at 11:59 PM
+    </div>
+</div>
+
+<% include ../partials/footer %>
