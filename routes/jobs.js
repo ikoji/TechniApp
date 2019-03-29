@@ -4,7 +4,7 @@ var express = require("express"),
     middleware = require("../middleware");
 
 // INDEX ROUTE - show all jobs
-router.get("/", function(req, res){
+router.get("/", middleware.isLoggedIn, function(req, res){
 	// Get all jobs from DB
 	Job.find({}, function(err, allJobs){
 		if(err){
@@ -38,7 +38,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
 		deductible      = req.body.deductible,
 		createdAt		= req.body.createdAt,
 		modifiedAt		= req.body.modifiedAt,
-		newJob  =   {
+		newJob	=	{
 					jobId: jobId,
 					status: status,
 					customerName: customerName,
