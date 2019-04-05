@@ -81,7 +81,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res) {
 });
 
 // SHOW ROUTE - shows more info about one job
-router.get("/:id", function(req, res) {
+router.get("/:id", middleware.isLoggedIn, function(req, res) {
 	// find the job with provided id
 	Job.findById(req.params.id).populate("comments").exec(function(err,foundJob){
 	   if(err){
