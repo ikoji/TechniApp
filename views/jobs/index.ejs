@@ -44,7 +44,7 @@
                             <td class="align-middle">
                                 <%= job.status %>
                             </td>
-                            <td class="align-middle">
+                            <td data-order="<%= moment(job.modifiedAt).format() %>" class="align-middle">
                                 <%= moment(job.modifiedAt).fromNow() %>
                             </td>
                         </tr>
