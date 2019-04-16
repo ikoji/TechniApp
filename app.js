@@ -6,10 +6,9 @@ var express		= require("express"),
 	passport	= require("passport"),
 	LocalStrategy = require("passport-local"),
 	methodOverride = require("method-override"),
-	Job		= require("./models/job"),
-	Comment		= require("./models/comment"),
-	User		= require("./models/user"),
-	seedDB		= require("./seeds");
+	// Job		= require("./models/job"),
+	// Comment		= require("./models/comment"),
+	User		= require("./models/user");
 
 // Requiring Routes
 var jobRoutes		= require("./routes/jobs"),
@@ -24,8 +23,6 @@ app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
 app.locals.moment = require("moment");
-// Seed the Database
-// seedDB();
 
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
