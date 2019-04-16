@@ -2,3 +2,12 @@
     margin: 0px;
     padding: 0px;
 }
+
+.page-link {
+    color: #dc3545;
+}
+
+.page-item.active .page-link{
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
