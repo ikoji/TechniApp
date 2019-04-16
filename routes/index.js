@@ -3,22 +3,29 @@ var express = require("express"),
     passport = require("passport"),
     User    = require("../models/user");
 
-// Root Route
-router.get("/", function(req, res){
-	res.render("landing");
-});
 
-// ====================
-// AUTHORIZATION ROUTES
-// ====================
+router.get("/", landing);
+router.get("/register", register);
+router.post("/register", createUser);
+router.get("/login", login);
+// Handle login logic
+router.post("/login", passport.authenticate("local", { successRedirect: "/jobs", failureRedirect: "/login" }), postLogin);
+router.get("/logout", logout);
+
+module.exports = router;
+
+// Root Route
+function landing(req, res){
+	res.render("landing");
+}
 
 // Register Route
-router.get("/register", function(req, res) {
+function register(req, res) {
 	res.render("register");
-});
+}
 
-// handle sign up logic
-router.post("/register", function(req, res) {
+// Handle sign up logic
+function createUser(req, res) {
 	var newUser = new User({username: req.body.username});
 	User.register(newUser, req.body.password, function(err, user){
 		if(err){
@@ -30,28 +37,21 @@ router.post("/register", function(req, res) {
 				res.redirect("/jobs");
 			});
 		}
-   });
-});
+	});
+}
 
 // Login Route
-router.get("/login", function(req, res) {
+function login(req, res) {
 	res.render("login");
-});
+}
 
-// handle login logic
-router.post("/login", passport.authenticate("local",
-	{
-		successRedirect: "/jobs",
-		failureRedirect: "/login"
-	}), function(req, res) {
+function postLogin(req, res) {
 
-});
+}
 
 // Logout Route
-router.get("/logout", function(req, res) {
+function logout(req, res) {
     req.logout();
     req.flash("success", "Logged you out!");
     res.redirect("/");
-});
-
-module.exports = router;
+}

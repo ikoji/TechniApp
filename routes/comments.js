@@ -4,8 +4,16 @@ var express = require("express"),
     Comment = require("../models/comment"),
     middleware = require("../middleware");
 
+router.get("/new", middleware.isLoggedIn, newComment);
+router.post("/", middleware.isLoggedIn, createComment);
+router.get("/:comment_id/edit", middleware.checkCommentOwnership, editComment);
+router.put("/:comment_id", middleware.checkCommentOwnership, updateComment);
+router.delete("/:comment_id", middleware.checkCommentOwnership, deleteComment);
+
+module.exports = router;
+
 // Comments New Route
-router.get("/new", middleware.isLoggedIn, function(req, res){
+function newComment(req, res){
 	// find job by id
 	Job.findById(req.params.id, function(err, job){
 	   if(err){
@@ -14,10 +22,10 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
 		   res.render("comments/new", {job: job});
 	   }
 	});
-});
+}
 
 // Comments Create Route
-router.post("/", middleware.isLoggedIn, function(req, res){
+function createComment(req, res){
    // lookup job using ID
    Job.findById(req.params.id, function(err, job) {
 	   if(err){
@@ -43,10 +51,10 @@ router.post("/", middleware.isLoggedIn, function(req, res){
 		   });
 	   }
    });
-});
+}
 
 // Comment Edit Route
-router.get("/:comment_id/edit", middleware.checkCommentOwnership, function(req,res){
+function editComment(req,res){
 	Comment.findById(req.params.comment_id, function(err, foundComment) {
 	    if(err){
 	    	console.log(err);
@@ -60,10 +68,10 @@ router.get("/:comment_id/edit", middleware.checkCommentOwnership, function(req,r
 	    	});
 	    }
 	});
-});
+}
 
 // Comment Update Route
-router.put("/:comment_id", middleware.checkCommentOwnership, function(req, res){
+function updateComment(req, res){
 	Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, updatedComment) {
 		if(err){
 			res.redirect("back");
@@ -77,10 +85,10 @@ router.put("/:comment_id", middleware.checkCommentOwnership, function(req, res){
 			});
 		}
 	});
-});
+}
 
 // Comment Destroy Route
-router.delete("/:comment_id", middleware.checkCommentOwnership, function(req, res){
+function deleteComment(req, res){
 	//findByIdAndRemove
 	Comment.findByIdAndRemove(req.params.comment_id, function(err){
 		if(err){
@@ -90,6 +98,4 @@ router.delete("/:comment_id", middleware.checkCommentOwnership, function(req, re
 			res.redirect("/jobs/" + req.params.id);
 		}
 	});
-});
-
-module.exports = router;
+}
