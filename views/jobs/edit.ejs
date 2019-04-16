@@ -15,9 +15,32 @@
                 </nav>
             </div>
            	<div class="">
-				<form action="/jobs/<%= job._id %>?_method=DELETE" method="POST">
-					<button class="btn btn-md btn-outline-danger float-sm-right">Delete</button>
-				</form>
+           		<button type="button" class="btn btn-md btn-outline-danger float-sm-right" data-toggle="modal" data-target="#deleteModal">Delete</button>
+           		<!-- Modal -->
+				<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header bg-light">
+							<h5 class="modal-title text-danger" id="deleteModalLabel">Warning!</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<p>Deleting is permanent and cannot be undone.</p>
+								Are you sure you want to delete <strong><%= job.jobId %> - <%= job.customerName %></strong>?
+
+							</div>
+							<div class="modal-footer justify-content-between bg-light">
+								<button type="button" class="btn btn-md btn-outline-secondary" data-dismiss="modal">Go Back</button>
+								<form action="/jobs/<%= job._id %>?_method=DELETE" method="POST">
+									<button class="btn btn-md btn-danger float-sm-right" data-modal-action="yes">Delete</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Modal Ends -->
 			</div>
 		</div>
 	</div>
@@ -36,7 +59,7 @@
         				    <select id="inputStatus" name="job[status]" class="form-control">
         				    	<% if(job.status === "Received"){ %>
         				    	    <option selected> <% } else { %> <option> 
-        				    	<% } %>    
+        				    	<% } %>
         				    	    Received</option>
         				    	<% if(job.status === "Quoting"){ %>
         				    	    <option selected> <% } else { %> <option> 
@@ -63,42 +86,11 @@
         				    	<% } %> 
         				    	    On Hold</option>
         				    	<% if(job.status === "On Clint's Desk"){ %>
-        				    	    <option selected> <% } else { %> <option> 
+        							<option selected> <% } else { %> <option> 
         				    	<% } %> 
-        				    	    On Clint's Desk</option>
+        				    		On Clint's Desk</option>
         				    </select>
                         </div>
-                        <!--<div class="form-group col">-->
-                        <!--    <legend class="col-form-label"><strong>Job Status</strong></legend>-->
-                        <!--    <div class="form-check form-check-inline">-->
-                        <!--        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Received" checked>-->
-                        <!--        <label class="form-check-label" for="inlineRadio1">Received</label>-->
-                        <!--    </div>-->
-                        <!--    <div class="form-check form-check-inline">-->
-                        <!--        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Quoting">-->
-                        <!--        <label class="form-check-label" for="inlineRadio2">Quoting</label>-->
-                        <!--    </div>-->
-                        <!--    <div class="form-check form-check-inline">-->
-                        <!--        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Progress">-->
-                        <!--        <label class="form-check-label" for="inlineRadio3">Work in Progress</label>-->
-                        <!--    </div>-->
-                        <!--    <div class="form-check form-check-inline">-->
-                        <!--        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="Done">-->
-                        <!--        <label class="form-check-label" for="inlineRadio4">Work Finished</label>-->
-                        <!--    </div>-->
-                        <!--    <div class="form-check form-check-inline">-->
-                        <!--        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="Invoiced">-->
-                        <!--        <label class="form-check-label" for="inlineRadio5">Waiting for Payment</label>-->
-                        <!--    </div>-->
-                        <!--    <div class="form-check form-check-inline">-->
-                        <!--        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio6" value="Complete">-->
-                        <!--        <label class="form-check-label" for="inlineRadio6">Complete</label>-->
-                        <!--    </div>-->
-                        <!--    <div class="form-check form-check-inline">-->
-                        <!--        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio7" value="Hold">-->
-                        <!--        <label class="form-check-label" for="inlineRadio7">On Hold</label>-->
-                        <!--    </div>-->
-                        <!--</div>-->
                     </div>
                 </div>
             </div>
@@ -153,7 +145,7 @@
             					<option>QC</option>
             					<option>SK</option>
             					<option>YT</option>
-        				    </select>
+        					</select>
         				</div>
         				<div class="form-group col-md-3">
         				    <label for="inputPostal">Postal Code</label>
@@ -203,7 +195,7 @@
             				    <input type="date" class="form-control" name="job[dateOfLoss]" id="inputLossDate" value="<%= moment(job.dateOfLoss).format("YYYY-MM-DD") %>">
             			    </div>
             			    <div class="form-group col-md-6">
-        				        <label for="inputDeductible">Deductible</label>        				    
+        				        <label for="inputDeductible">Deductible</label>
         				        <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">$</span>
