@@ -16,7 +16,12 @@ module.exports = router;
 
 // Root Route
 function landing(req, res){
-	res.render("landing");
+	// res.render("landing");
+	if(req.isAuthenticated()){
+		res.redirect("/jobs");
+	} else {
+	res.redirect("/login");
+	}
 }
 
 // Register Route
