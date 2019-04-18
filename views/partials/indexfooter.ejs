@@ -17,7 +17,7 @@
             src="https://cdn.datatables.net/v/bs4/dt-1.10.18/fh-3.1.4/r-2.2.2/datatables.min.js"></script>
         <script>
             $(document).ready( function () {
-                $('#dataTable').DataTable({
+                $('#jobsTable').DataTable({
                     responsive: {
                         details: {
                             display: $.fn.dataTable.Responsive.display.childRowImmediate,
@@ -31,6 +31,22 @@
                     },
                     "pageLength": 25,
                     "order": [[ 5, "desc" ]]
+                });
+            } );
+            $(document).ready( function () {
+                $('#usersTable').DataTable({
+                    responsive: {
+                        details: {
+                            display: $.fn.dataTable.Responsive.display.childRowImmediate,
+                            type: 'none',
+                            target: ''
+                        }
+                    },
+                    fixedHeader: {
+                        header: true,
+                        headerOffset: $('.navbar').height()
+                    },
+                    "pageLength": 25,
                 });
             } );
         </script>

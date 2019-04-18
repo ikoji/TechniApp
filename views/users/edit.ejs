@@ -1,0 +1,148 @@
+<% include ../partials/header %>
+
+<div class="card my-4 mx-md-5">
+    <div class="card-header">
+        <div class="no-gutters align-items-center d-flex justify-content-between">
+            <div class="">
+                <nav aria-label="breadcrumb">
+                    <h3 class="headtitle">
+                        <ol class="breadcrumb bg-transparent headtitle">
+                            <li class="breadcrumb-item"><a class="text-dark" href="/users/"><strong>Users</strong></a></li>
+                            <li class="breadcrumb-item"><a class="text-dark" href="/users/<%=user._id%>"><strong><%= user.username %></strong></a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                        </ol>
+                    </h3>
+                </nav>
+            </div>
+			<% if(currentUser.isAdmin && (currentUser._id.toString() != user._id.toString())){ %>
+           	<div class="">
+           		<button type="button" class="btn btn-md btn-outline-danger float-sm-right" data-toggle="modal" data-target="#deleteModal">Delete</button>
+           		<!-- Modal -->
+				<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header bg-light">
+							<h5 class="modal-title text-danger" id="deleteModalLabel">Warning!</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<p>Deleting is permanent and cannot be undone.</p>
+								Are you sure you want to delete <strong><%= user.username %></strong>?
+
+							</div>
+							<div class="modal-footer justify-content-between bg-light">
+								<button type="button" class="btn btn-md btn-outline-secondary" data-dismiss="modal">Go Back</button>
+								<form action="/users/<%= user._id %>?_method=DELETE" method="POST">
+									<button class="btn btn-md btn-danger float-sm-right" data-modal-action="yes">Delete</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Modal Ends -->
+			</div>
+			<% } %>
+		</div>
+	</div>
+	<div class="card-body">
+		<!-- Form Starts Here  -->
+		<form action="/users/<%= user._id %>?_method=PUT" method="POST">
+    	    <div class="card my-3 mx-lg-5">
+    	       <div class="card-header">
+	                <strong>User Information</strong>
+	            </div>
+	            <div class="card-body">
+    	        <fieldset>
+        			<div class="form-row">
+        			    <div class="form-group col-md-6">
+        				    <label for="inputName">Username</label>
+        				    <input type="text" class="form-control" name="user[username]" id="inputUsername" value="<%=user.username%>">
+        				</div>
+						<% if(currentUser.isAdmin && (currentUser._id.toString() != user._id.toString())){ %>
+	        				<div class="col-6 col-sm-4 col-md-3 mx-auto">
+                                <label for="radios">
+                                    Admin Rights?
+                                </label>
+                                <div class="d-flex justify-content-around" id="radios">
+	                                <% if(user.isAdmin){ %>
+			                            <div class="custom-control custom-radio">
+			                                <input type="radio" name="user[isAdmin]" id="radioT" class="custom-control-input radioTrue" value="true" checked>
+			                                <label class="custom-control-label radioTrue" for="radioT">
+			                                    Yes
+			                                </label>
+			                            </div>
+			                            <div class="custom-control custom-radio ">
+			                                <input type="radio" name="user[isAdmin]" id="radioF" class="custom-control-input radioFalse" value="false">
+			                                <label class="custom-control-label radioFalse" for="radioF">
+			                                    No
+			                                </label>
+			                            </div>
+									<% } else {%>
+			                            <div class="custom-control custom-radio ">
+			                                <input type="radio" name="user[isAdmin]" id="radioT" class="custom-control-input radioTrue" value="true">
+			                                <label class="custom-control-label radioTrue" for="radioT">
+			                                    Yes
+			                                </label>
+			                            </div>
+			                            <div class="custom-control custom-radio ">
+			                                <input type="radio" name="user[isAdmin]" id="radioF" class="custom-control-input radioFalse" value="false" checked>
+			                                <label class="custom-control-label radioFalse" for="radioF">
+			                                    No
+			                                </label>
+			                            </div>
+		                            <% } %>	
+                                </div>
+	                        </div>
+	        			<% } %>
+        			</div>
+        			<div class="form-row">
+        				<div class="form-group col-md-6">
+        				    <label for="inputFirstName">First Name</label>
+        				    <input type="text" class="form-control" name="user[firstName]" id="inputFirstName" value="<%=user.firstName%>">
+        				</div>
+        				<div class="form-group col-md-6">
+        				    <label for="inputLastName">Last Name</label>
+        				    <input type="text" class="form-control" name="user[lastName]" id="inputLastName" value="<%=user.lastName%>">
+        				</div>
+        			</div>
+        			<div class="form-row">
+        			    <div class="form-group col-md-4">
+        				    <label for="inputEmail">Email</label>
+        				    <input type="email" class="form-control" name="user[email]" id="inputEmail" value="<%=user.email%>">
+        				</div>
+        				<div class="form-group col-md-4">
+        				    <label for="inputPhone">Phone</label>
+        				    <input type="text" class="form-control" name="user[phone]" id="inputPhone" value="<%=user.phone%>">
+        				</div>
+        				<div class="form-group col-md-4">
+        				    <label for="inputTitle">Title</label>
+        				    <input type="text" class="form-control" name="user[title]" id="inputTitle" value="<%=user.title%>">
+        				</div>
+        			</div>
+        			<div class="form-row">
+        				<div class="form-group col-md-6">
+        				    <label for="inputPassword">New Password</label>
+        				    <input type="password" class="form-control" name="" id="inputPassword" value="">
+        				</div>
+        				<div class="form-group col-md-6">
+        				    <label for="inputConfirmPassword">Confirm New Password</label>
+        				    <input type="password" class="form-control" name="" id="inputConfirmPassword" value="">
+        				</div>
+        			</div>
+        		</fieldset>
+ 		        </div>
+		    </div>
+    	    <div class="form-group mx-lg-5">
+                <button class="btn btn-md btn-outline-success btn-block">Save</button>
+            </div>
+        </form>
+		<!-- Form Ends Here -->
+	</div>
+	<div class="card-footer">
+		<a class="btn btn-sm btn-outline-secondary" href="/users/">Go Back</a>
+	</div>
+</div>
+
+<% include ../partials/footer %>

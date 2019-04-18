@@ -1,4 +1,4 @@
-var express		= require("express"),
+const express	= require("express"),
 	app			= express(),
 	bodyParser	= require("body-parser"),
 	mongoose	= require("mongoose"),
@@ -11,11 +11,12 @@ var express		= require("express"),
 	User		= require("./models/user");
 
 // Requiring Routes
-var jobRoutes		= require("./routes/jobs"),
-	commentRoutes	= require("./routes/comments"),
-	indexRoutes		= require("./routes/index");
+const jobRoutes		= require("./routes/jobs"),
+	  commentRoutes	= require("./routes/comments"),
+	  indexRoutes	= require("./routes/index"),
+	  userRoutes	= require("./routes/users");
 
-var url = process.env.DATABASEURL || 'mongodb://localhost:27017/techniapp';
+const url = process.env.DATABASEURL || 'mongodb://localhost:27017/techniapp';
 mongoose.connect(url, { useNewUrlParser: true });
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
@@ -46,6 +47,7 @@ app.use(function(req, res, next){
 app.use("/", indexRoutes);
 app.use("/jobs", jobRoutes);
 app.use("/jobs/:id/comments", commentRoutes);
+app.use("/users", userRoutes);
 
 app.listen(process.env.PORT || 3000, process.env.IP, function(){
 	console.log("TechniApp Server is Online");

@@ -5,8 +5,8 @@ var express = require("express"),
 
 
 router.get("/", landing);
-router.get("/register", register);
-router.post("/register", createUser);
+// router.get("/register", register);
+// router.post("/register", createUser);
 router.get("/login", login);
 // Handle login logic
 router.post("/login", passport.authenticate("local", { successRedirect: "/jobs", failureRedirect: "/login" }), postLogin);
@@ -30,20 +30,35 @@ function register(req, res) {
 }
 
 // Handle sign up logic
-function createUser(req, res) {
-	var newUser = new User({username: req.body.username});
-	User.register(newUser, req.body.password, function(err, user){
-		if(err){
-			console.log(err);
-			return res.render("register", {error: err.message});
-		} else {
-			passport.authenticate("local")(req, res, function(){
-				req.flash("success", "Welcome to TechniApp " + user.username);
-				res.redirect("/jobs");
-			});
-		}
-	});
-}
+// function createUser(req, res) {
+// 		var username	= req.body.username,
+// 		firstName	= req.body.firstName,
+// 		lastName	= req.body.lastName,
+// 		email		= req.body.email,
+// 		phone		= req.body.phone,
+// 		title		= req.body.title,
+// 		isAdmin		= req.body.isAdmin,
+// 		newUser 	= new User({
+// 					username: username,
+// 					firstName: firstName,
+// 					lastName: lastName,
+// 					email: email,
+// 					phone: phone,
+// 					title: title,
+// 					isAdmin: isAdmin
+// 				});
+// 	User.register(newUser, req.body.password, function(err, user){
+// 		if(err){
+// 			console.log(err);
+// 			return res.render("register", {error: err.message});
+// 		} else {
+// 			passport.authenticate("local")(req, res, function(){
+// 				req.flash("success", "Welcome to TechniApp " + user.username);
+// 				res.redirect("/jobs");
+// 			});
+// 		}
+// 	});
+// }
 
 // Login Route
 function login(req, res) {
