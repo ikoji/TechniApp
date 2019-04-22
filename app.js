@@ -7,7 +7,7 @@ const express	= require("express"),
 	LocalStrategy = require("passport-local"),
 	methodOverride = require("method-override"),
 	// Job		= require("./models/job"),
-	// Comment		= require("./models/comment"),
+	// Comment	= require("./models/comment"),
 	User		= require("./models/user");
 
 // Requiring Routes

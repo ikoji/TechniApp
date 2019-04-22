@@ -17,7 +17,7 @@
 				<thead>
 					<tr>
 						<th class="align-middle" scope="col">Job ID</th>
-						<th class="align-middle" scope="col">Customer Name</th>
+						<th class="align-middle" scope="col">Client Name</th>
 						<th class="align-middle" scope="col">Job Address</th>
 						<th class="align-middle" scope="col">Phone Number</th>
 						<th class="align-middle" scope="col">Job Status</th>
@@ -33,7 +33,7 @@
 								</a>
 							</td>
 							<td class="align-middle">
-								<%= job.customerName %>
+								<%= job.clientName.lastName + ', ' + job.clientName.firstName %>
 							</td>
 							<td class="align-middle">
 								<%= job.address.street %>, <%= job.address.city %> <%= job.address.province %>

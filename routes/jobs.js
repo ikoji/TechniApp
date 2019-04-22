@@ -30,7 +30,8 @@ function createJob(req, res){
 	// Get data from form and add to jobs array
 	var jobId           = req.body.jobId,
 		status			= req.body.status,
-		customerName    = req.body.customerName,
+		firstName		= req.body.firstName,
+		lastName 		= req.body.lastName,
 		phone           = req.body.phone,
 		email			= req.body.email,
 		street          = req.body.street,
@@ -51,7 +52,11 @@ function createJob(req, res){
 		newJob	=	{
 					jobId: jobId,
 					status: status,
-					customerName: customerName,
+					clientName: 
+						{
+							firstName: firstName,
+							lastName: lastName
+						},
 					phone: phone,
 					email: email,
 					address:

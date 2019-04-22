@@ -8,7 +8,7 @@
 					<h3 class="headtitle">
 						<ol class="breadcrumb bg-transparent headtitle">
 							<li class="breadcrumb-item"><a class="text-dark" href="/jobs/"><strong>Jobs</strong></a></li>
-							<li class="breadcrumb-item active" aria-current="page"><%= job.jobId %> - <%= job.customerName %></li>
+							<li class="breadcrumb-item active" aria-current="page"><%= job.jobId %> - <%= job.clientName.lastName + ', ' + job.clientName.firstName %></li>
 						</ol>
 					</h3>
 				</nav>
@@ -55,10 +55,10 @@
 				</div>
 			<% } %>
 		</div>
-		<!-- Customer Info Card -->
+		<!-- Client Info Card -->
 		<div class="card my-3 mx-lg-5">
 			<div class="card-header">
-				<span class="align-middle"><strong>Customer Information</strong></span>
+				<span class="align-middle"><strong>Client Information</strong></span>
 			</div>
 			<div class="card-body">
 				<div class="row">
@@ -67,7 +67,7 @@
 							<tbody>
 								<tr class="d-flex">
 									<th scope="row" class="col-5 col-md-3 text-right">Name</td>
-									<td><%=job.customerName%></td>
+									<td><%=job.clientName.firstName + ' ' + job.clientName.lastName%></td>
 								</tr>
 								<tr class="d-flex">
 									<th scope="row" class="col-5 col-md-3 text-right">Phone Number</td>

@@ -8,7 +8,7 @@
                     <h3 class="headtitle">
                         <ol class="breadcrumb bg-transparent headtitle">
                             <li class="breadcrumb-item"><a class="text-dark" href="/jobs/"><strong>Jobs</strong></a></li>
-                            <li class="breadcrumb-item"><a class="text-dark" href="/jobs/<%=job._id%>"><strong><%= job.jobId %> - <%= job.customerName %></strong></a></li>
+                            <li class="breadcrumb-item"><a class="text-dark" href="/jobs/<%=job._id%>"><strong><%= job.jobId %> - <%= job.clientName.lastName + ', ' + job.clientName.firstName %></strong></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Edit Comment</li>
                         </ol>
                     </h3>
