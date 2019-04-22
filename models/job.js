@@ -4,7 +4,6 @@ var mongoose = require("mongoose");
 var jobSchema = new mongoose.Schema({
     jobId: Number,
     status: String,
-    customerName: String,
     clientName: {
         firstName: String,
         lastName:String,

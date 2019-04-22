@@ -28,7 +28,7 @@
 							</div>
 							<div class="modal-body">
 								<p>Deleting is permanent and cannot be undone.</p>
-								Are you sure you want to delete <strong><%= job.jobId %> - <%= job.customerName %></strong>?
+								Are you sure you want to delete <strong><%= job.jobId %> - <%= job.clientName.lastName + ', ' + job.clientName.firstName %></strong>?
 
 							</div>
 							<div class="modal-footer justify-content-between bg-light">
@@ -103,11 +103,11 @@
         			<div class="form-row">
         			    <div class="form-group col-md-6">
         				    <label for="inputFirstName">First Name</label>
-        				    <input type="text" class="form-control" name="job[clientName.firstName]" id="inputFirstName" value="<%if(job.customerName){%><%=job.customerName.split(' ')[0]%><%}else{%><%=job.clientName.firstName%><%}%>">
+        				    <input type="text" class="form-control" name="job[clientName.firstName]" id="inputFirstName" value="<%=job.clientName.firstName%>">
         				</div>
 						<div class="form-group col-md-6">
         				    <label for="inputLastName">Last Name</label>
-        				    <input type="text" class="form-control" name="job[clientName.lastName]" id="inputLastName" value="<%if(job.customerName){%><%=job.customerName.split(' ')[1]%><%}else{%><%=job.clientName.lastName%><%}%>">
+        				    <input type="text" class="form-control" name="job[clientName.lastName]" id="inputLastName" value="<%=job.clientName.lastName%>">
         				</div>
         				<div class="form-group col-md-6">
         				    <label for="inputPhone">Phone Number</label>
