@@ -55,7 +55,8 @@ function createUser(req, res){
 	User.register(newUser, req.body.password, function(err, user){
 		if(err){
 			console.log(err);
-			return res.render("register", {error: err.message});
+			req.flash("error", err.message);
+			res.redirect("/users");
 		} else {
 			req.flash("success", "New user created: " + user.username);
 			res.redirect("/users");
