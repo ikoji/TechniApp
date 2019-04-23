@@ -35,4 +35,12 @@ var jobSchema = new mongoose.Schema({
     ]
 });
 
+jobSchema.virtual('fullName').get(function (){
+	return this.clientName.firstName + ' ' + this.clientName.lastName;
+});
+
+jobSchema.virtual('lastFirstName').get(function (){
+	return this.clientName.lastName + ', ' + this.clientName.firstName;
+});
+
 module.exports = mongoose.model("Job", jobSchema);
