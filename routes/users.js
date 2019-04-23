@@ -1,8 +1,7 @@
 const express	= require("express"),
 	router		= express.Router(),
 	User		= require("../models/user"),
-	middleware	= require("../middleware"),
-	passport	= require("passport");
+	middleware	= require("../middleware");
 
 router.get("/", middleware.isLoggedIn, allUsers);
 router.get("/new", middleware.isAdmin, newUserRoute);
@@ -92,12 +91,31 @@ function editUser(req, res) {
 
 // UPDATE USER ROUTE
 function updateUser(req, res){
-	User.findByIdAndUpdate(req.params.id, req.body.user, function(err, updatedUser){
+	User.findByIdAndUpdate(req.params.id, req.body.user, function(err, user){
 		if(err){
 			console.log(err);
 			res.redirect("/users");
 		} else {
-			res.redirect("/users");
+			if(req.body.password !== ""){
+				if(req.body.password !== req.body.confirmPassword) {
+					req.flash("error","Passwords do not match");
+					res.redirect("/users/"+req.params.id+"/edit");
+				} else {
+					user.setPassword(req.body.password, function(err,user){
+						if (err) {
+							req.flash("error", "Password could not be saved. Please try again!");
+							res.redirect("/users");
+						} else {
+							user.save();
+							req.flash("success", "New password has been saved successfully");
+							res.redirect("/users");
+						}
+					});
+				}
+			} else {
+				req.flash("success", "Saved successfully");
+				res.redirect("/users");
+			}
 		}
 	});
 }
