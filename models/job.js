@@ -45,6 +45,6 @@ jobSchema.virtual('lastFirstName').get(function (){
 
 jobSchema.virtual('fullAddress').get(function (){
     return this.address.apartment + " " + this.address.street + ", " + this.address.city + " " + this.address.province + " " + this.address.postal;
-})
+});
 
 module.exports = mongoose.model("Job", jobSchema);
