@@ -33,10 +33,10 @@ router.post("/", middleware.isLoggedIn,
 			check('email')
 				.optional({checkFalsy: true})
 				.isEmail().withMessage("Please provide a valid email address")
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:30}).withMessage("30 characters max per input"),
 			check('street')
 				.optional({checkFalsy: true})
-				.isLength({max:30}).withMessage("20 characters max per input"),
+				.isLength({max:30}).withMessage("30 characters max per input"),
 			check('apartment')
 				.optional({checkFalsy:true})
 				.isLength({max:20}).withMessage("20 characters max per input"),
@@ -100,11 +100,11 @@ router.put("/:id", middleware.isLoggedIn,
 			check('job[email]')
 				.optional({checkFalsy: true})
 				.isEmail().withMessage("Please provide a valid email address")
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:30}).withMessage("30 characters max per input"),
 			check('job[address][street]')
 				.optional({checkFalsy: true})
 				.not().isEmpty()
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:30}).withMessage("30 characters max per input"),
 			check('job[address][apartment]')
 				.optional({checkFalsy:true})
 				.isLength({max:20}).withMessage("20 characters max per input"),

@@ -26,7 +26,7 @@ router.post("/",
 			check('email')
 				.optional({checkFalsy: true})
 				.isEmail().withMessage("Please provide a valid email address")
-				.isLength({max:30}).withMessage("20 characters max per input"),
+				.isLength({max:30}).withMessage("30 characters max per input"),
 			check('phone')
 				.optional({checkFalsy: true})
 				.trim().escape()
@@ -69,7 +69,7 @@ router.put("/:id",
 			check('user.email')
 				.optional({checkFalsy: true})
 				.isEmail().withMessage("Please provide a valid email address")
-				.isLength({max:30}).withMessage("20 characters max per input"),
+				.isLength({max:30}).withMessage("30 characters max per input"),
 			check('user.phone')
 				.optional({checkFalsy: true})
 				.trim().escape()
