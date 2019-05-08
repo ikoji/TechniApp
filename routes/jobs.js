@@ -36,7 +36,7 @@ router.post("/", middleware.isLoggedIn,
 				.isLength({max:20}).withMessage("20 characters max per input"),
 			check('street')
 				.optional({checkFalsy: true})
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:30}).withMessage("20 characters max per input"),
 			check('apartment')
 				.optional({checkFalsy:true})
 				.isLength({max:20}).withMessage("20 characters max per input"),
