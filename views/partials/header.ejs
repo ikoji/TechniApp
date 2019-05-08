@@ -45,7 +45,15 @@
 		<% if(error && error.length > 0){ %>
 			<div class="container">
 				<div class="alert alert-danger mt-3 mx-md-5" role="alert">
-					<%= error %>
+					<% if(error.length === 1) { %>
+						<%= error %>
+					<% } else { %>
+						<ul class="list-group">
+							<% error.forEach(function(err) { %>
+								<li class="list-group-item bg-transparent border-0 p-0"> <%= err %> </li>
+							<% }) %>
+						</ul>
+					<% } %> 
 				</div>
 			</div>
 		<% } %>

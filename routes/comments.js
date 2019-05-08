@@ -3,11 +3,26 @@ var express = require("express"),
     Job     = require("../models/job"),
     Comment = require("../models/comment"),
     middleware = require("../middleware");
+const { check, validationResult } = require('express-validator/check');
 
 router.get("/new", middleware.isLoggedIn, newComment);
-router.post("/", middleware.isLoggedIn, createComment);
+router.post("/", middleware.isLoggedIn,
+			[
+			check("comment[text]")
+				.trim().escape()
+				.not().isEmpty()
+				.withMessage("Comment is empty")
+				.isLength({max:300}).withMessage("Too long. 300 characters max"),
+			], createComment);
 router.get("/:comment_id/edit", middleware.checkCommentOwnership, editComment);
-router.put("/:comment_id", middleware.checkCommentOwnership, updateComment);
+router.put("/:comment_id", middleware.checkCommentOwnership,
+			[
+			check("comment[text]")
+				.trim().escape()
+				.not().isEmpty()
+				.withMessage("Comment is empty")
+				.isLength({max:300}).withMessage("Comment is too long - 300 characters max"),
+			], updateComment);
 router.delete("/:comment_id", middleware.checkCommentOwnership, deleteComment);
 
 module.exports = router;
@@ -26,31 +41,39 @@ function newComment(req, res){
 
 // Comments Create Route
 function createComment(req, res){
-   // lookup job using ID
-   Job.findById(req.params.id, function(err, job) {
-	   if(err){
-		   console.log(err);
-		   res.redirect("/jobs");
-	   } else {
-		   // create new comment
-		   Comment.create(req.body.comment, function(err, comment){
-			   if(err){
-				   console.log(err);
-			   } else {
-			        // add username and id to comment
-			        comment.author.id = req.user._id;
-			        comment.author.username = req.user.username;
-					// connect new comment to job
-					comment.save();
-					job.comments.push(comment);
-					job.save();
-					// redirect to job show page
-					req.flash("success", "Success! Comment added.");
-					res.redirect("/jobs/" + job._id);
-			   }
-		   });
-	   }
-   });
+  	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		errors.array().forEach(function(err){
+			req.flash("error", err.msg);
+		});
+		res.redirect("/jobs/" + req.params.id + "/comments/new");
+	} else {
+		// lookup job using ID
+		Job.findById(req.params.id, function(err, job) {
+			if(err){
+				console.log(err);
+				res.redirect("/jobs");
+			} else {
+				// create new comment
+				Comment.create(req.body.comment, function(err, comment){
+					if(err){
+					   console.log(err);
+					} else {
+						// add username and id to comment
+				        comment.author.id = req.user._id;
+				        comment.author.username = req.user.username;
+						// connect new comment to job
+						comment.save();
+						job.comments.push(comment);
+						job.save();
+						// redirect to job show page
+						req.flash("success", "Success! Comment added.");
+						res.redirect("/jobs/" + job._id);
+				   }
+			   });
+		   }
+	   });
+	}
 }
 
 // Comment Edit Route
@@ -72,19 +95,27 @@ function editComment(req,res){
 
 // Comment Update Route
 function updateComment(req, res){
-	Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, updatedComment) {
-		if(err){
-			res.redirect("back");
-		} else {
-			Job.findByIdAndUpdate(req.params.id, req.body.job, function(err, updatedJob){
-				if(err){
-					res.redirect("back");
-				} else {
-					res.redirect("/jobs/" + req.params.id );
-				}
-			});
-		}
-	});
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		errors.array().forEach(function(err){
+			req.flash("error", err.msg);
+		});
+		res.redirect("/jobs/" + req.params.id + "/comments/" + req.params.comment_id + "/edit");
+	} else {
+		Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, updatedComment) {
+			if(err){
+				res.redirect("back");
+			} else {
+				Job.findByIdAndUpdate(req.params.id, req.body.job, function(err, updatedJob){
+					if(err){
+						res.redirect("back");
+					} else {
+						res.redirect("/jobs/" + req.params.id );
+					}
+				});
+			}
+		});
+	}
 }
 
 // Comment Destroy Route
