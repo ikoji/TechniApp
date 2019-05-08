@@ -48,7 +48,7 @@ router.post("/", middleware.isLoggedIn,
 				.isLength({max:20}).withMessage("20 characters max per input"),
 			check('postal')
 				.optional({checkFalsy:true})
-				.isPostalCode()
+				.isPostalCode('CA')
 				.isLength({max:20}).withMessage("20 characters max per input"),
 			check('insComp')
 				.optional({checkFalsy:true})
