@@ -6,6 +6,7 @@ const express	= require("express"),
 	passport	= require("passport"),
 	LocalStrategy = require("passport-local"),
 	methodOverride = require("method-override"),
+	helmet		= require('helmet'),
 	// Job		= require("./models/job"),
 	// Comment	= require("./models/comment"),
 	User		= require("./models/user");
@@ -18,6 +19,7 @@ const jobRoutes		= require("./routes/jobs"),
 
 const url = process.env.DATABASEURL || 'mongodb://localhost:27017/techniapp';
 mongoose.connect(url, { useNewUrlParser: true });
+app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
