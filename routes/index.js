@@ -9,7 +9,7 @@ router.get("/", landing);
 // router.post("/register", createUser);
 router.get("/login", login);
 // Handle login logic
-router.post("/login", passport.authenticate("local", { successRedirect: "/jobs", failureRedirect: "/login" }), postLogin);
+router.post("/login", passport.authenticate("local", { successRedirect: "/jobs", failureRedirect: "/login", failureFlash: true }), postLogin);
 router.get("/logout", logout);
 
 module.exports = router;
