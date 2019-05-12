@@ -1,26 +1,26 @@
 <% include ../partials/header %>
 
-<div class="card my-4 mx-md-5">
-    <div class="card-header">
-        <div class="no-gutters align-items-center d-flex justify-content-between">
-            <div class="">
-                <nav aria-label="breadcrumb">
-                    <h3 class="headtitle">
-                        <ol class="breadcrumb bg-transparent headtitle">
-                            <li class="breadcrumb-item"><a class="text-dark" href="/jobs/"><strong>Jobs</strong></a></li>
-                            <li class="breadcrumb-item"><a class="text-dark" href="/jobs/<%=job._id%>"><strong><%= job.jobId %> - <%= job.lastFirstName %></strong></a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Edit</li>
-                        </ol>
-                    </h3>
-                </nav>
-            </div>
-           	<div class="">
-           		<button type="button" class="btn btn-md btn-outline-danger float-sm-right" data-toggle="modal" data-target="#deleteModal">Delete</button>
-           		<!-- Modal -->
+<div class="card maincardbg shadow my-4 mx-md-5">
+	<div class="card-header shadow-sm bg-light">
+		<div class="no-gutters align-items-center d-flex justify-content-between">
+			<div class="">
+				<nav aria-label="breadcrumb">
+					<h3 class="headtitle">
+						<ol class="breadcrumb bg-transparent headtitle">
+							<li class="breadcrumb-item"><a class="text-dark" href="/jobs/"><strong>Jobs</strong></a></li>
+							<li class="breadcrumb-item"><a class="text-dark" href="/jobs/<%=job._id%>"><strong><%= job.jobId %> - <%= job.lastFirstName %></strong></a></li>
+							<li class="breadcrumb-item active" aria-current="page">Edit</li>
+						</ol>
+					</h3>
+				</nav>
+			</div>
+			<div class="">
+				<button type="button" class="btn shadow-sm btn-md btn-outline-danger float-sm-right" data-toggle="modal" data-target="#deleteModal">Delete</button>
+				<!-- Modal -->
 				<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
-							<div class="modal-header bg-light">
+							<div class="modal-header shadow-sm bg-light">
 							<h5 class="modal-title text-danger" id="deleteModalLabel">Warning!</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
@@ -31,10 +31,10 @@
 								Are you sure you want to delete <strong><%= job.jobId %> - <%= job.clientName.lastName + ', ' + job.clientName.firstName %></strong>?
 
 							</div>
-							<div class="modal-footer justify-content-between bg-light">
-								<button type="button" class="btn btn-md btn-outline-secondary" data-dismiss="modal">Go Back</button>
+							<div class="modal-footer shadow-sm justify-content-between bg-light">
+								<button type="button" class="btn shadow-sm btn-md btn-outline-secondary" data-dismiss="modal">Go Back</button>
 								<form action="/jobs/<%= job._id %>?_method=DELETE" method="POST">
-									<button class="btn btn-md btn-danger float-sm-right" data-modal-action="yes">Delete</button>
+									<button class="btn shadow-sm btn-md btn-danger float-sm-right" data-modal-action="yes">Delete</button>
 								</form>
 							</div>
 						</div>
@@ -47,182 +47,182 @@
 	<div class="card-body">
 		<!-- Form Starts Here  -->
 		<form action="/jobs/<%= job._id %>?_method=PUT" method="POST">
-            <div class="card my-3 mx-lg-5">
-                <div class="card-header border-light">
-                    <div class="form-row">
-                        <div class="form-group col">
-                            <label for="inputJobId"><strong>Job ID</strong></label>
-                            <input class="form-control" type="text" name="job[jobId]" id="inputJobId" value="<%=job.jobId%>">
-                        </div>
-                        <div class="form-group col">
-        				    <label for="inputStatus"><strong>Job Status</strong></label>
-        				    <select id="inputStatus" name="job[status]" class="form-control">
-        				    	<% if(job.status === "Received"){ %>
-        				    	    <option selected> <% } else { %> <option> 
-        				    	<% } %>
-        				    	    Received</option>
-        				    	<% if(job.status === "Quoting"){ %>
-        				    	    <option selected> <% } else { %> <option> 
-        				    	<% } %> 
-            					    Quoting</option>
-        				    	<% if(job.status === "Work in Progress"){ %>
-        				    	    <option selected> <% } else { %> <option> 
-        				    	<% } %> 
-        				    	    Work in Progress</option>
-        				    	<% if(job.status === "Work Finished"){ %>
-        				    	    <option selected> <% } else { %> <option> 
-        				    	<% } %> 
-            					    Work Finished</option>
-            					<% if(job.status === "Waiting for Payment"){ %>
-        				    	    <option selected> <% } else { %> <option> 
-        				    	<% } %> 
-        				    	    Waiting for Payment</option>
-            					<% if(job.status === "Job Complete"){ %>
-        				    	    <option selected> <% } else { %> <option> 
-        				    	<% } %> 
-        				    	    Job Complete</option>
-                                <% if(job.status === "On Hold"){ %>
-        				    	    <option selected> <% } else { %> <option> 
-        				    	<% } %> 
-        				    	    On Hold</option>
-        				    	<% if(job.status === "On Clint's Desk"){ %>
-        							<option selected> <% } else { %> <option> 
-        				    	<% } %> 
-        				    		On Clint's Desk</option>
-        				    </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    	    <div class="card my-3 mx-lg-5">
-    	       <div class="card-header">
-	                <strong>Client Information</strong>
-	            </div>
-	            <div class="card-body">
-    	        <fieldset>
-        			<div class="form-row">
-        			    <div class="form-group col-md-6">
-        				    <label for="inputFirstName">First Name</label>
-        				    <input type="text" class="form-control" name="job[clientName][firstName]" id="inputFirstName" value="<%=job.clientName.firstName%>">
-        				</div>
+			<div class="card shadow my-3 mx-lg-5">
+				<div class="card-header border-light">
+					<div class="form-row">
+						<div class="form-group col">
+							<label for="inputJobId"><strong>Job ID</strong></label>
+							<input class="form-control" type="text" name="job[jobId]" id="inputJobId" value="<%=job.jobId%>">
+						</div>
+						<div class="form-group col">
+							<label for="inputStatus"><strong>Job Status</strong></label>
+							<select id="inputStatus" name="job[status]" class="form-control">
+								<% if(job.status === "Received"){ %>
+									<option selected> <% } else { %> <option> 
+								<% } %>
+									Received</option>
+								<% if(job.status === "Quoting"){ %>
+									<option selected> <% } else { %> <option> 
+								<% } %> 
+									Quoting</option>
+								<% if(job.status === "Work in Progress"){ %>
+									<option selected> <% } else { %> <option> 
+								<% } %> 
+									Work in Progress</option>
+								<% if(job.status === "Work Finished"){ %>
+									<option selected> <% } else { %> <option> 
+								<% } %> 
+									Work Finished</option>
+								<% if(job.status === "Waiting for Payment"){ %>
+									<option selected> <% } else { %> <option> 
+								<% } %> 
+									Waiting for Payment</option>
+								<% if(job.status === "Job Complete"){ %>
+									<option selected> <% } else { %> <option> 
+								<% } %> 
+									Job Complete</option>
+								<% if(job.status === "On Hold"){ %>
+									<option selected> <% } else { %> <option> 
+								<% } %> 
+									On Hold</option>
+								<% if(job.status === "On Clint's Desk"){ %>
+									<option selected> <% } else { %> <option> 
+								<% } %> 
+									On Clint's Desk</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card shadow my-3 mx-lg-5">
+			   <div class="card-header shadow-sm">
+					<strong>Client Information</strong>
+				</div>
+				<div class="card-body">
+				<fieldset>
+					<div class="form-row">
 						<div class="form-group col-md-6">
-        				    <label for="inputLastName">Last Name</label>
-        				    <input type="text" class="form-control" name="job[clientName][lastName]" id="inputLastName" value="<%=job.clientName.lastName%>">
-        				</div>
-        				<div class="form-group col-md-6">
-        				    <label for="inputPhone">Phone Number</label>
-        				    <input type="text" class="form-control" name="job[phone]" id="inputPhone" value="<%=job.phone%>">
-        				</div>
-        				<div class="form-group col-md-6">
-        				    <label for="inputEmail">Email</label>
-        				    <input type="email" class="form-control" name="job[email]" id="inputEmail" value="<%=job.email%>">
-        				</div>
-        			</div>
-        			<div class="form-row">
-        			    <div class="form-group col-md-7">
-        				    <label for="inputAddress">Address</label>
-        				    <input type="text" class="form-control" name="job[address][street]" id="inputAddress" value="<%=job.address.street%>">
-        				</div>
-        				<div class="form-group col-md-5">
-        				    <label for="inputAddress2">Address 2</label>
-        				    <input type="text" class="form-control" name="job[address][apartment]" id="inputAddress2" value="<%=job.address.apartment%>">
-        				</div>
-        			</div>
-        			<div class="form-row">
-        				<div class="form-group col-md-6">
-        				    <label for="inputCity">City</label>
-        				    <input type="text" class="form-control" name="job[address][city]" id="inputCity" value="<%=job.address.city%>">
-        				</div>
-        				<div class="form-group col-md-3">
-        				    <label for="inputProvince">Province</label>
-        				    <select id="inputProvince" name="job[address][province]" class="form-control">
-        					    <option>Choose...</option>
-        				    	<option>AB</option>
-            					<option selected>BC</option>
-            					<option>MB</option>
-            					<option>NL</option>
-            					<option>NS</option>
-            					<option>NT</option>
-            					<option>NU</option>
-            					<option>ON</option>
-            					<option>PE</option>
-            					<option>QC</option>
-            					<option>SK</option>
-            					<option>YT</option>
-        					</select>
-        				</div>
-        				<div class="form-group col-md-3">
-        				    <label for="inputPostal">Postal Code</label>
-        				    <input type="text" class="form-control" name="job[address][postal]" id="inputPostal" value="<%=job.address.postal%>">
-        				</div>
-        			</div>
-        		</fieldset>
- 		        </div>
-		    </div>
-    	    <div class="card my-3 mx-lg-5">
-	            <fieldset>
-        	        <div class="card-header">
-        	            <strong>Claim Information</strong>
-        	        </div>
-        	        <div class="card-body">
-                		<div class="form-row">
-            			    <div class="form-group col-md-4">
-            				    <label for="inputInsuranceCompany">Insurance Company</label>
-            				    <input type="text" class="form-control" name="job[insComp]" id="inputInsuranceCompany" value="<%=job.insComp%>">
-            			    </div>
-            			    <div class="form-group col-md-4">
-                				<label for="inputInsPolNum">Policy Number</label>
-                				<input type="text" class="form-control" name="job[policyNum]" id="inputInsPolNum" value="<%=job.policyNum%>">
-                			</div>
-                			<div class="form-group col-md-4">
-                				<label for="inputInsClaimNum">Claim Number</label>
-                				<input type="text" class="form-control" name="job[claimNum]" id="inputInsClaimNum" value="<%=job.claimNum%>">
-                			</div>
-                		</div>
-            			<div class="form-row">
-            			    <div class="form-group col-md-4">
-            				    <label for="inputAdjustingCompany">Adjusting Company</label>
-            				    <input type="text" class="form-control" name="job[adjComp]" id="inputAdjustingCompany" value="<%=job.adjComp%>">
-            			    </div>
-            			    <div class="form-group col-md-4">
-            				    <label for="inputAdjName">Adjuster</label>
-            				    <input type="text" class="form-control" name="job[adjuster]" id="inputAdjName" value="<%=job.adjuster%>">
-            			    </div>
-            			    <div class="form-group col-md-4">
-            				    <label for="inputAdjClaimNum">File Number</label>
-            				    <input type="text" class="form-control" name="job[fileNum]" id="inputAdjClaimNum" value="<%=job.fileNum%>">
-            			    </div>
-            			</div>
-            			<div class="form-row">
-            			    <div class="form-group col-md-6">
-            				    <label for="inputLossDate">Date of Loss</label>
-            				    <input type="date" class="form-control" name="job[dateOfLoss]" id="inputLossDate" value="<%= moment(job.dateOfLoss).format("YYYY-MM-DD") %>">
-            			    </div>
-            			    <div class="form-group col-md-6">
-        				        <label for="inputDeductible">Deductible</label>
-        				        <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">$</span>
-                                    </div>
-        				            <input type="text" class="form-control" name="job[deductible]" id="inputDeductible" value="<%=job.deductible%>">
-        				            <div class="input-group-append">
-                                        <span class="input-group-text">.00</span>
-                                    </div>
-                                </div>
-                            </div>
-            	        </div>
-            	    </div>
-        	    </fieldset>
-        	</div>
-    	    <div class="form-group mx-lg-5">
-    	        <input type="text" hidden name="job[modifiedAt]" value="<%= Date.now() %>">
-                <button class="btn btn-md btn-outline-success btn-block">Save</button>
-            </div>
-        </form>
+							<label for="inputFirstName">First Name</label>
+							<input type="text" class="form-control" name="job[clientName][firstName]" id="inputFirstName" value="<%=job.clientName.firstName%>">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="inputLastName">Last Name</label>
+							<input type="text" class="form-control" name="job[clientName][lastName]" id="inputLastName" value="<%=job.clientName.lastName%>">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="inputPhone">Phone Number</label>
+							<input type="text" class="form-control" name="job[phone]" id="inputPhone" value="<%=job.phone%>">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="inputEmail">Email</label>
+							<input type="email" class="form-control" name="job[email]" id="inputEmail" value="<%=job.email%>">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-7">
+							<label for="inputAddress">Address</label>
+							<input type="text" class="form-control" name="job[address][street]" id="inputAddress" value="<%=job.address.street%>">
+						</div>
+						<div class="form-group col-md-5">
+							<label for="inputAddress2">Address 2</label>
+							<input type="text" class="form-control" name="job[address][apartment]" id="inputAddress2" value="<%=job.address.apartment%>">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="inputCity">City</label>
+							<input type="text" class="form-control" name="job[address][city]" id="inputCity" value="<%=job.address.city%>">
+						</div>
+						<div class="form-group col-md-3">
+							<label for="inputProvince">Province</label>
+							<select id="inputProvince" name="job[address][province]" class="form-control">
+								<option>Choose...</option>
+								<option>AB</option>
+								<option selected>BC</option>
+								<option>MB</option>
+								<option>NL</option>
+								<option>NS</option>
+								<option>NT</option>
+								<option>NU</option>
+								<option>ON</option>
+								<option>PE</option>
+								<option>QC</option>
+								<option>SK</option>
+								<option>YT</option>
+							</select>
+						</div>
+						<div class="form-group col-md-3">
+							<label for="inputPostal">Postal Code</label>
+							<input type="text" class="form-control" name="job[address][postal]" id="inputPostal" value="<%=job.address.postal%>">
+						</div>
+					</div>
+				</fieldset>
+				</div>
+			</div>
+			<div class="card shadow my-3 mx-lg-5">
+				<fieldset>
+					<div class="card-header shadow-sm">
+						<strong>Claim Information</strong>
+					</div>
+					<div class="card-body">
+						<div class="form-row">
+							<div class="form-group col-md-4">
+								<label for="inputInsuranceCompany">Insurance Company</label>
+								<input type="text" class="form-control" name="job[insComp]" id="inputInsuranceCompany" value="<%=job.insComp%>">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputInsPolNum">Policy Number</label>
+								<input type="text" class="form-control" name="job[policyNum]" id="inputInsPolNum" value="<%=job.policyNum%>">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputInsClaimNum">Claim Number</label>
+								<input type="text" class="form-control" name="job[claimNum]" id="inputInsClaimNum" value="<%=job.claimNum%>">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-4">
+								<label for="inputAdjustingCompany">Adjusting Company</label>
+								<input type="text" class="form-control" name="job[adjComp]" id="inputAdjustingCompany" value="<%=job.adjComp%>">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputAdjName">Adjuster</label>
+								<input type="text" class="form-control" name="job[adjuster]" id="inputAdjName" value="<%=job.adjuster%>">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputAdjClaimNum">File Number</label>
+								<input type="text" class="form-control" name="job[fileNum]" id="inputAdjClaimNum" value="<%=job.fileNum%>">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="inputLossDate">Date of Loss</label>
+								<input type="date" class="form-control" name="job[dateOfLoss]" id="inputLossDate" value="<%= moment(job.dateOfLoss).format("YYYY-MM-DD") %>">
+							</div>
+							<div class="form-group col-md-6">
+								<label for="inputDeductible">Deductible</label>
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text">$</span>
+									</div>
+									<input type="text" class="form-control" name="job[deductible]" id="inputDeductible" value="<%=job.deductible%>">
+									<div class="input-group-append">
+										<span class="input-group-text">.00</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+			</div>
+			<div class="form-group mx-lg-5">
+				<input type="text" hidden name="job[modifiedAt]" value="<%= Date.now() %>">
+				<button class="btn shadow-sm btn-md btn-outline-success btn-block">Save</button>
+			</div>
+		</form>
 		<!-- Form Ends Here -->
 	</div>
-	<div class="card-footer">
-		<a class="btn btn-sm btn-outline-secondary" href="/jobs/<%= job._id %>">Go Back</a>
+	<div class="card-footer shadow-sm bg-light">
+		<a class="btn shadow-sm btn-sm btn-outline-secondary" href="/jobs/<%= job._id %>">Go Back</a>
 	</div>
 </div>
 

@@ -25,9 +25,9 @@
 			rel="stylesheet" 
 			href="/stylesheets/main.css">
 	</head>
-	<body>
+	<body class="bg">
 
-		<nav class="navbar sticky-top navbar-expand-md navbar-default navbar-dark bg-danger">
+		<nav class="navbar shadow sticky-top navbar-expand-md navbar-default navbar-dark bg-danger">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<a class="navbar-brand" href="/">TechniApp <i class="fas fa-rocket"></i></a>
@@ -51,7 +51,7 @@
 
 		<% if(error && error.length > 0){ %>
 			<div class="container">
-				<div class="alert alert-danger mt-3 mx-md-5" role="alert">
+				<div class="alert alert-danger shadow-sm mt-3 mx-md-5" role="alert">
 				<% if(error.length === 1) { %>
 						<%= error %>
 					<% } else { %>
@@ -67,7 +67,7 @@
 
 		<% if(success && success.length > 0){ %>
 			<div class="container">
-				<div class="alert alert-success mt-3 mx-md-5" role="alert">
+				<div class="alert alert-success shadow-sm mt-3 mx-md-5" role="alert">
 					<%= success %>
 				</div>
 			</div>

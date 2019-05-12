@@ -1,7 +1,7 @@
 <% include ../partials/header %>
 
-<div class="card my-4 mx-md-5">
-    <div class="card-header">
+<div class="card maincardbg shadow my-4 mx-md-5">
+    <div class="card-header shadow-sm bg-light">
         <div class="no-gutters align-items-center d-flex justify-content-between">
             <div class="">
                 <nav aria-label="breadcrumb">
@@ -16,12 +16,12 @@
             </div>
 			<% if(currentUser.isAdmin && (currentUser._id.toString() != user._id.toString())){ %>
            	<div class="">
-           		<button type="button" class="btn btn-md btn-outline-danger float-sm-right" data-toggle="modal" data-target="#deleteModal">Delete</button>
+           		<button type="button" class="btn shadow-sm btn-md btn-outline-danger float-sm-right" data-toggle="modal" data-target="#deleteModal">Delete</button>
            		<!-- Modal -->
 				<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
-							<div class="modal-header bg-light">
+							<div class="modal-header shadow-sm bg-light">
 							<h5 class="modal-title text-danger" id="deleteModalLabel">Warning!</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
@@ -33,9 +33,9 @@
 
 							</div>
 							<div class="modal-footer justify-content-between bg-light">
-								<button type="button" class="btn btn-md btn-outline-secondary" data-dismiss="modal">Go Back</button>
+								<button type="button" class="btn shadow-sm btn-md btn-outline-secondary" data-dismiss="modal">Go Back</button>
 								<form action="/users/<%= user._id %>?_method=DELETE" method="POST">
-									<button class="btn btn-md btn-danger float-sm-right" data-modal-action="yes">Delete</button>
+									<button class="btn shadow-sm btn-md btn-danger float-sm-right" data-modal-action="yes">Delete</button>
 								</form>
 							</div>
 						</div>
@@ -49,8 +49,8 @@
 	<div class="card-body">
 		<!-- Form Starts Here  -->
 		<form action="/users/<%= user._id %>?_method=PUT" method="POST">
-    	    <div class="card my-3 mx-lg-5">
-    	       <div class="card-header">
+    	    <div class="card shadow my-3 mx-lg-5">
+    	       <div class="card-header shadow-sm">
 	                <strong>User Information</strong>
 	            </div>
 	            <div class="card-body">
@@ -135,13 +135,13 @@
  		        </div>
 		    </div>
     	    <div class="form-group mx-lg-5">
-                <button class="btn btn-md btn-outline-success btn-block">Save</button>
+                <button class="btn shadow-sm btn-md btn-outline-success btn-block">Save</button>
             </div>
         </form>
 		<!-- Form Ends Here -->
 	</div>
-	<div class="card-footer">
-		<a class="btn btn-sm btn-outline-secondary" href="/users/">Go Back</a>
+	<div class="card-footer shadow-sm bg-light">
+		<a class="btn shadow-sm btn-sm btn-outline-secondary" href="/users/">Go Back</a>
 	</div>
 </div>
 

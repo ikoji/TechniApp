@@ -1,179 +1,180 @@
 <% include ../partials/header %>
 
-<div class="card my-4 mx-md-5">
-    <div class="card-header">
-        <div class="no-gutters align-items-center d-flex justify-content-between">
-            <div class="">
-                <nav aria-label="breadcrumb">
-                    <h3 class="headtitle pt-1">
-                        <ol class="breadcrumb bg-transparent headtitle">
-                            <li class="breadcrumb-item"><a class="text-dark" href="/jobs/"><strong>Jobs</strong></a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Add New</li>
-                        </ol>
-                    </h3>
-                </nav>
-            </div>
-        </div>
-    </div>
-    <div class="card-body">
-        <!-- Form Starts Here  -->
-    	<form action="/jobs" method="POST">
-                <div class="card mt-3 mx-lg-5">
-                    <div class="card-header border-light">
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <label for="inputJobId"><strong>Job ID</strong></label>
-                                <input class="form-control" type="text" name="jobId" id="inputJobId"placeholder="YYTXXX (Year + Town + Number)">
-                            </div>
-                            <div class="form-group col">
-            				    <label for="inputStatus"><strong>Job Status</strong></label>
-            				    <select id="inputStatus" name="status" class="form-control">
-            				    	<option selected>Received</option>
-                					<option>Quoting</option>
-                					<option>Work in Progress</option>
-                					<option>Work Finished</option>
-                					<option>Waiting for Payment</option>
-                					<option>Job Complete</option>
-                					<option>On Hold</option>
-                					<option>On Clint's Desk</option>
-            				    </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                    
-        	    <div class="card my-3 mx-lg-5">
-        	        <div class="card-header">
-        	            <strong>Client Information</strong>
-        	        </div>
-        	        <div class="card-body">
-        	            <fieldset>
-        			
-        			<div class="form-row">
-        			    <div class="form-group col-md-6">
-        				    <label for="inputFirstName">First Name</label>
-        				    <input type="text" class="form-control" name="firstName" id="inputFirstName" placeholder="Jane">
-        				</div>
+<div class="card maincardbg shadow my-4 mx-md-5">
+	<div class="card-header shadow-sm bg-light">
+		<div class="no-gutters align-items-center d-flex justify-content-between">
+			<div class="">
+				<nav aria-label="breadcrumb">
+					<h3 class="headtitle pt-1">
+						<ol class="breadcrumb bg-transparent headtitle">
+							<li class="breadcrumb-item"><a class="text-dark" href="/jobs/"><strong>Jobs</strong></a></li>
+							<li class="breadcrumb-item active" aria-current="page">Add New</li>
+						</ol>
+					</h3>
+				</nav>
+			</div>
+		</div>
+	</div>
+	<div class="card-body">
+		<!-- Form Starts Here  -->
+		<form action="/jobs" method="POST">
+			<div class="card shadow mt-3 mx-lg-5">
+				<div class="card-header border-light">
+					<div class="form-row">
+						<div class="form-group col">
+							<label for="inputJobId"><strong>Job ID</strong></label>
+							<input class="form-control" type="text" name="jobId" id="inputJobId"placeholder="YYTXXX (Year + Town + Number)">
+						</div>
+						<div class="form-group col">
+							<label for="inputStatus"><strong>Job Status</strong></label>
+							<select id="inputStatus" name="status" class="form-control">
+								<option selected>Received</option>
+								<option>Quoting</option>
+								<option>Work in Progress</option>
+								<option>Work Finished</option>
+								<option>Waiting for Payment</option>
+								<option>Job Complete</option>
+								<option>On Hold</option>
+								<option>On Clint's Desk</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Client Info Card -->
+			<div class="card shadow my-3 mx-lg-5">
+				<div class="card-header shadow-sm">
+					<strong>Client Information</strong>
+				</div>
+				<div class="card-body">
+					<fieldset>
+				
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="inputFirstName">First Name</label>
+						<input type="text" class="form-control" name="firstName" id="inputFirstName" placeholder="Jane">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="inputLastName">Last Name</label>
+						<input type="text" class="form-control" name="lastName" id="inputLastName" placeholder="Doe">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="inputPhone">Phone Number</label>
+						<input type="text" class="form-control" name="phone" id="inputPhone" placeholder="(123) 456-7890">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="inputEmail">Email</label>
+						<input type="email" class="form-control" name="email" id="inputEmail" placeholder="janedoe@email.ca">
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-8">
+						<label for="inputAddress">Address</label>
+						<input type="text" class="form-control" name="street" id="inputAddress" placeholder="1234 Main St">
+					</div>
+					<div class="form-group col-md-4">
+						<label for="inputAddress2">Address 2</label>
+						<input type="text" class="form-control" name="apartment" id="inputAddress2" placeholder="Apartment, floor">
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="inputCity">City</label>
+						<input type="text" class="form-control" name="city" id="inputCity">
+					</div>
+					<div class="form-group col-md-3">
+						<label for="inputProvince">Province</label>
+						<select id="inputProvince" name="province" class="form-control">
+							<option>Choose...</option>
+							<option>AB</option>
+							<option selected>BC</option>
+							<option>MB</option>
+							<option>NL</option>
+							<option>NS</option>
+							<option>NT</option>
+							<option>NU</option>
+							<option>ON</option>
+							<option>PE</option>
+							<option>QC</option>
+							<option>SK</option>
+							<option>YT</option>
+						</select>
+					</div>
+					<div class="form-group col-md-3">
+						<label for="inputPostal">Postal Code</label>
+						<input type="text" class="form-control" name="postal" id="inputPostal" placeholder="V8X X0X">
+					</div>
+				</div>
+			</fieldset>
+				</div>
+			</div>
+			<!-- Claim Info Card -->
+			<div class="card shadow my-3 mx-lg-5">
+				<fieldset>
+				<div class="card-header shadow-sm">
+					<strong>Claim Information</strong>
+				</div>
+				<div class="card-body">
+					<div class="form-row">
+						<div class="form-group col-md-4">
+							<label for="inputInsuranceCompany">Insurance Company</label>
+							<input type="text" class="form-control" name="insComp" id="inputInsuranceCompany" placeholder="">
+						</div>
+						<div class="form-group col-md-4">
+							<label for="inputInsPolNum">Policy Number</label>
+							<input type="text" class="form-control" name="policyNum" id="inputInsPolNum" placeholder="Policy #">
+						</div>
+						<div class="form-group col-md-4">
+							<label for="inputInsClaimNum">Claim Number</label>
+							<input type="text" class="form-control" name="claimNum" id="inputInsClaimNum" placeholder="Claim #">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-4">
+							<label for="inputAdjustingCompany">Adjusting Company</label>
+							<input type="text" class="form-control" name="adjComp" id="inputAdjustingCompany" placeholder="">
+						</div>
+						<div class="form-group col-md-4">
+							<label for="inputAdjName">Adjuster</label>
+							<input type="text" class="form-control" name="adjuster" id="inputAdjName" placeholder="Name">
+						</div>
+						<div class="form-group col-md-4">
+							<label for="inputAdjClaimNum">File Number</label>
+							<input type="text" class="form-control" name="fileNum" id="inputAdjClaimNum" placeholder="File #">
+						</div>
+					</div>
+					<div class="form-row">
 						<div class="form-group col-md-6">
-        				    <label for="inputLastName">Last Name</label>
-        				    <input type="text" class="form-control" name="lastName" id="inputLastName" placeholder="Doe">
-        				</div>
-        				<div class="form-group col-md-6">
-        				    <label for="inputPhone">Phone Number</label>
-        				    <input type="text" class="form-control" name="phone" id="inputPhone" placeholder="(123) 456-7890">
-        				</div>
-        				<div class="form-group col-md-6">
-        				    <label for="inputEmail">Email</label>
-        				    <input type="email" class="form-control" name="email" id="inputEmail" placeholder="janedoe@email.ca">
-        				</div>
-        			</div>
-        			<div class="form-row">
-        			    <div class="form-group col-md-8">
-        				    <label for="inputAddress">Address</label>
-        				    <input type="text" class="form-control" name="street" id="inputAddress" placeholder="1234 Main St">
-        				</div>
-        				<div class="form-group col-md-4">
-        				    <label for="inputAddress2">Address 2</label>
-        				    <input type="text" class="form-control" name="apartment" id="inputAddress2" placeholder="Apartment, floor">
-        				</div>
-        			</div>
-        			<div class="form-row">
-        				<div class="form-group col-md-6">
-        				    <label for="inputCity">City</label>
-        				    <input type="text" class="form-control" name="city" id="inputCity">
-        				</div>
-        				<div class="form-group col-md-3">
-        				    <label for="inputProvince">Province</label>
-        				    <select id="inputProvince" name="province" class="form-control">
-        					    <option>Choose...</option>
-        				    	<option>AB</option>
-            					<option selected>BC</option>
-            					<option>MB</option>
-            					<option>NL</option>
-            					<option>NS</option>
-            					<option>NT</option>
-            					<option>NU</option>
-            					<option>ON</option>
-            					<option>PE</option>
-            					<option>QC</option>
-            					<option>SK</option>
-            					<option>YT</option>
-        				    </select>
-        				</div>
-        				<div class="form-group col-md-3">
-        				    <label for="inputPostal">Postal Code</label>
-        				    <input type="text" class="form-control" name="postal" id="inputPostal" placeholder="V8X X0X">
-        				</div>
-        			</div>
-        		</fieldset>
-        		    </div>
-        		</div>
-        	    <div class="card my-3 mx-lg-5">
-        	        <fieldset>
-        	        <div class="card-header">
-        	            <strong>Claim Information</strong>
-        	        </div>
-        	        <div class="card-body">
-                		<div class="form-row">
-            			    <div class="form-group col-md-4">
-            				    <label for="inputInsuranceCompany">Insurance Company</label>
-            				    <input type="text" class="form-control" name="insComp" id="inputInsuranceCompany" placeholder="">
-            			    </div>
-            			    <div class="form-group col-md-4">
-                				<label for="inputInsPolNum">Policy Number</label>
-                				<input type="text" class="form-control" name="policyNum" id="inputInsPolNum" placeholder="Policy #">
-                			</div>
-                			<div class="form-group col-md-4">
-                				<label for="inputInsClaimNum">Claim Number</label>
-                				<input type="text" class="form-control" name="claimNum" id="inputInsClaimNum" placeholder="Claim #">
-                			</div>
-                		</div>
-            			<div class="form-row">
-            			    <div class="form-group col-md-4">
-            				    <label for="inputAdjustingCompany">Adjusting Company</label>
-            				    <input type="text" class="form-control" name="adjComp" id="inputAdjustingCompany" placeholder="">
-            			    </div>
-            			    <div class="form-group col-md-4">
-            				    <label for="inputAdjName">Adjuster</label>
-            				    <input type="text" class="form-control" name="adjuster" id="inputAdjName" placeholder="Name">
-            			    </div>
-            			    <div class="form-group col-md-4">
-            				    <label for="inputAdjClaimNum">File Number</label>
-            				    <input type="text" class="form-control" name="fileNum" id="inputAdjClaimNum" placeholder="File #">
-            			    </div>
-            			</div>
-            			<div class="form-row">
-            			    <div class="form-group col-md-6">
-            				    <label for="inputLossDate">Date of Loss</label>
-            				    <input type="date" class="form-control" name="dateOfLoss" id="inputLossDate" placeholder="">
-            			    </div>
-            			    <div class="form-group col-md-6">
-        				        <label for="inputDeductible">Deductible</label>        				    
-        				        <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">$</span>
-                                    </div>
-        				            <input type="text" class="form-control" name="deductible" id="inputDeductible" placeholder="Amount">                                  
-            				        <div class="input-group-append">
-                                        <span class="input-group-text">.00</span>
-                                    </div>
-                                </div>
-            			    </div>
-            	        </div>
-            	    </div>
-        	        </fieldset>
-        	        
-                </div>
-                
-        	    <div class="form-group mx-lg-5">
-                    <button class="btn btn-md btn-outline-success btn-block">Save New Job</button>
-                </div>
-            </form>
-        <!-- Form Ends Here -->
-    </div>
-    <div class="card-footer">
-        <a class="btn btn-sm btn-outline-secondary" href="/jobs">Go Back</a>
-    </div>
+							<label for="inputLossDate">Date of Loss</label>
+							<input type="date" class="form-control" name="dateOfLoss" id="inputLossDate" placeholder="">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="inputDeductible">Deductible</label>        				    
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text">$</span>
+								</div>
+								<input type="text" class="form-control" name="deductible" id="inputDeductible" placeholder="Amount">                                  
+								<div class="input-group-append">
+									<span class="input-group-text">.00</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</fieldset>
+				
+			</div>
+			
+			<div class="form-group mx-lg-5">
+				<button class="btn shadow-sm btn-md btn-outline-success btn-block">Save New Job</button>
+			</div>
+		</form>
+	<!-- Form Ends Here -->
+	</div>
+	<div class="card-footer shadow-sm bg-light">
+		<a class="btn shadow-sm btn-sm btn-outline-secondary" href="/jobs">Go Back</a>
+	</div>
 </div>
 
 <% include ../partials/footer %>

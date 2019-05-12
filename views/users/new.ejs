@@ -1,100 +1,100 @@
 <% include ../partials/header %>
 
-<div class="card my-4 mx-md-5">
-    <div class="card-header">
-        <div class="no-gutters align-items-center d-flex justify-content-between">
-            <div class="">
-                <nav aria-label="breadcrumb">
-                    <h3 class="headtitle">
-                        <ol class="breadcrumb bg-transparent headtitle">
-                            <li class="breadcrumb-item"><a class="text-dark" href="/users/"><strong>Users</strong></a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Add New</li>
-                        </ol>
-                    </h3>
-                </nav>
-            </div>
+<div class="card maincardbg shadow my-4 mx-md-5">
+	<div class="card-header shadow-sm bg-light">
+		<div class="no-gutters align-items-center d-flex justify-content-between">
+			<div class="">
+				<nav aria-label="breadcrumb">
+					<h3 class="headtitle pt-1">
+						<ol class="breadcrumb bg-transparent headtitle">
+							<li class="breadcrumb-item"><a class="text-dark" href="/users/"><strong>Users</strong></a></li>
+							<li class="breadcrumb-item active" aria-current="page">Add New</li>
+						</ol>
+					</h3>
+				</nav>
+			</div>
 		</div>
 	</div>
 	<div class="card-body">
 		<!-- Form Starts Here  -->
 		<form action="/users" method="POST">
-    	    <div class="card my-3 mx-lg-5">
-    	       <div class="card-header">
-	                <strong>User Information</strong>
-	            </div>
-	            <div class="card-body">
-    	        <fieldset>
-        			<div class="form-row">
-        			    <div class="form-group col-md-6">
-        				    <label for="inputName">Username</label>
-        				    <input type="text" class="form-control" name="username" id="inputUsername" placeholder="JaneD" required>
-        				</div>
-	    				<div class="col-6 col-sm-4 col-md-3 mx-auto">
-                            <label for="radios">
-                                Admin Rights?
-                            </label>
-                            <div class="d-flex justify-content-around" id="radios">
-                                <div class="custom-control custom-radio ">
-                                    <input type="radio" name="isAdmin" id="radioT" class="custom-control-input radioTrue" value="true">
-                                    <label class="custom-control-label radioTrue" for="radioT">
-                                        Yes
-                                    </label>
-                                </div>
-                                <div class="custom-control custom-radio ">
-                                    <input type="radio" name="isAdmin" id="radioF" class="custom-control-input radioFalse" value="false" checked>
-                                    <label class="custom-control-label radioFalse" for="radioF">
-                                        No
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-        			</div>
+			<div class="card shadow my-3 mx-lg-5">
+				<div class="card-header shadow-sm">
+					<strong>User Information</strong>
+				</div>
+				<div class="card-body">
+				<fieldset>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="inputName">Username</label>
+							<input type="text" class="form-control" name="username" id="inputUsername" placeholder="JaneD" required>
+						</div>
+						<div class="col-6 col-sm-4 col-md-3 mx-auto">
+							<label for="radios">
+								Admin Rights?
+							</label>
+							<div class="d-flex justify-content-around" id="radios">
+								<div class="custom-control custom-radio ">
+									<input type="radio" name="isAdmin" id="radioT" class="custom-control-input radioTrue" value="true">
+									<label class="custom-control-label radioTrue" for="radioT">
+										Yes
+									</label>
+								</div>
+								<div class="custom-control custom-radio ">
+									<input type="radio" name="isAdmin" id="radioF" class="custom-control-input radioFalse" value="false" checked>
+									<label class="custom-control-label radioFalse" for="radioF">
+										No
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
 
-        			<div class="form-row">
-        				<div class="form-group col-md-6">
-        				    <label for="inputFirstName">First Name</label>
-        				    <input type="text" class="form-control" name="firstName" id="inputFirstName" placeholder="Jane" required>
-        				</div>
-        				<div class="form-group col-md-6">
-        				    <label for="inputLastName">Last Name</label>
-        				    <input type="text" class="form-control" name="lastName" id="inputLastName" placeholder="Doe" required>
-        				</div>
-        			</div>
-        			<div class="form-row">
-        			    <div class="form-group col-md-4">
-        				    <label for="inputEmail">Email</label>
-        				    <input type="email" class="form-control" name="email" id="inputEmail" placeholder="JaneDoe@email.ca">
-        				</div>
-        				<div class="form-group col-md-4">
-        				    <label for="inputPhone">Phone</label>
-        				    <input type="text" class="form-control" name="phone" id="inputPhone" placeholder="">
-        				</div>
-        				<div class="form-group col-md-4">
-        				    <label for="inputTitle">Title</label>
-        				    <input type="text" class="form-control" name="title" id="inputTitle" placeholder="">
-        				</div>
-        			</div>
-        			<div class="form-row">
-        				<div class="form-group col-md-6">
-        				    <label for="inputPassword">Password</label>
-        				    <input type="password" class="form-control" name="password" id="inputPassword" placeholder="password" required>
-        				</div>
-        				<div class="form-group col-md-6">
-        				    <label for="inputConfirmPassword">Confirm Password</label>
-        				    <input type="password" class="form-control" name="confirmPassword" id="inputConfirmPassword" placeholder="password" required>
-        				</div>
-        			</div>
-        		</fieldset>
- 		        </div>
-		    </div>
-    	    <div class="form-group mx-lg-5">
-                <button class="btn btn-md btn-outline-success btn-block">Save</button>
-            </div>
-        </form>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="inputFirstName">First Name</label>
+							<input type="text" class="form-control" name="firstName" id="inputFirstName" placeholder="Jane" required>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="inputLastName">Last Name</label>
+							<input type="text" class="form-control" name="lastName" id="inputLastName" placeholder="Doe" required>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-4">
+							<label for="inputEmail">Email</label>
+							<input type="email" class="form-control" name="email" id="inputEmail" placeholder="JaneDoe@email.ca">
+						</div>
+						<div class="form-group col-md-4">
+							<label for="inputPhone">Phone</label>
+							<input type="text" class="form-control" name="phone" id="inputPhone" placeholder="">
+						</div>
+						<div class="form-group col-md-4">
+							<label for="inputTitle">Title</label>
+							<input type="text" class="form-control" name="title" id="inputTitle" placeholder="">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="inputPassword">Password</label>
+							<input type="password" class="form-control" name="password" id="inputPassword" placeholder="password" required>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="inputConfirmPassword">Confirm Password</label>
+							<input type="password" class="form-control" name="confirmPassword" id="inputConfirmPassword" placeholder="password" required>
+						</div>
+					</div>
+				</fieldset>
+				</div>
+			</div>
+			<div class="form-group mx-lg-5">
+				<button class="btn shadow-sm btn-md btn-outline-success btn-block">Save</button>
+			</div>
+		</form>
 		<!-- Form Ends Here -->
 	</div>
-	<div class="card-footer">
-		<a class="btn btn-sm btn-outline-secondary" href="/users/">Go Back</a>
+	<div class="card-footer shadow-sm bg-light">
+		<a class="btn shadow-sm btn-sm btn-outline-secondary" href="/users/">Go Back</a>
 	</div>
 </div>
 
