@@ -18,56 +18,56 @@ router.post("/", middleware.isLoggedIn,
 			check('status')
 				.not().isEmpty()
 				.withMessage("Job Status required")
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('firstName')
 				.optional({checkFalsy: true})
 				.not().isEmpty()
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('lastName')
 				.not().isEmpty()
 				.withMessage("Last Name required")
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('phone')
 				.optional({checkFalsy: true})
 				.isMobilePhone().withMessage("Invalid phone number"),
 			check('email')
 				.optional({checkFalsy: true})
 				.isEmail().withMessage("Please provide a valid email address")
-				.isLength({max:30}).withMessage("30 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('street')
 				.optional({checkFalsy: true})
-				.isLength({max:30}).withMessage("30 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('apartment')
 				.optional({checkFalsy:true})
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('city')
 				.optional({checkFalsy:true})
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('province')
 				.optional({checkFalsy:true})
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('postal')
 				.optional({checkFalsy:true})
 				.isPostalCode('CA')
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('insComp')
 				.optional({checkFalsy:true})
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('policyNum')
 				.optional({checkFalsy:true})
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('claimNum')
 				.optional({checkFalsy:true})
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('adjComp')
 				.optional({checkFalsy:true})
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('adjuster')
 				.optional({checkFalsy:true})
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('fileNum')
 				.optional({checkFalsy:true})
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('dateOfLoss')
 				.optional({checkFalsy:true})
 			], createJob);
@@ -86,56 +86,56 @@ router.put("/:id", middleware.isLoggedIn,
 			check('job[status]')
 				.not().isEmpty()
 				.withMessage("Job Status required")
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('job[clientName][firstName]')
 				.optional({checkFalsy: true})
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check("job[clientName][lastName]")
 				.not().isEmpty()
 				.withMessage("Last Name required")
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('job[phone]')
 				.optional({checkFalsy: true})
 				.isMobilePhone().withMessage("Invalid phone number"),
 			check('job[email]')
 				.optional({checkFalsy: true})
 				.isEmail().withMessage("Please provide a valid email address")
-				.isLength({max:30}).withMessage("30 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('job[address][street]')
 				.optional({checkFalsy: true})
 				.not().isEmpty()
-				.isLength({max:30}).withMessage("30 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('job[address][apartment]')
 				.optional({checkFalsy:true})
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('job[address][city]')
 				.optional({checkFalsy:true})
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('job[address][province]')
 				.optional({checkFalsy:true})
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('job[address][postal]')
 				.optional({checkFalsy:true})
 				.isPostalCode('CA')
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('job[insComp]')
 				.optional({checkFalsy:true})
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('job[policyNum]')
 				.optional({checkFalsy:true})
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('job[claimNum]')
 				.optional({checkFalsy:true})
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('job[adjComp]')
 				.optional({checkFalsy:true})
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('job[adjuster]')
 				.optional({checkFalsy:true})
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('job[fileNum]')
 				.optional({checkFalsy:true})
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('job[dateOfLoss]')
 				.optional({checkFalsy:true})
 			], updateJob);

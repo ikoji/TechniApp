@@ -12,7 +12,7 @@ router.post("/", middleware.isLoggedIn,
 				.trim().escape()
 				.not().isEmpty()
 				.withMessage("Comment is empty")
-				.isLength({max:300}).withMessage("Too long. 300 characters max"),
+				.isLength({max:400}).withMessage("Too long. 400 characters max"),
 			], createComment);
 router.get("/:comment_id/edit", middleware.checkCommentOwnership, editComment);
 router.put("/:comment_id", middleware.checkCommentOwnership,
@@ -21,7 +21,7 @@ router.put("/:comment_id", middleware.checkCommentOwnership,
 				.trim().escape()
 				.not().isEmpty()
 				.withMessage("Comment is empty")
-				.isLength({max:300}).withMessage("Comment is too long - 300 characters max"),
+				.isLength({max:400}).withMessage("Comment is too long - 400 characters max"),
 			], updateComment);
 router.delete("/:comment_id", middleware.checkCommentOwnership, deleteComment);
 

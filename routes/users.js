@@ -12,30 +12,29 @@ router.post("/",
 				.not().isEmpty()
 				.trim().escape()
 				.withMessage("Username required")
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('firstName')
 				.not().isEmpty()
 				.trim().escape()
 				.withMessage("First Name required")
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('lastName')
 				.not().isEmpty()
 				.trim().escape()
 				.withMessage("Last Name required")
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('email')
 				.optional({checkFalsy: true})
 				.isEmail().withMessage("Please provide a valid email address")
-				.isLength({max:30}).withMessage("30 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('phone')
 				.optional({checkFalsy: true})
 				.trim().escape()
-				.isMobilePhone().withMessage("Invalid phone number")
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isMobilePhone().withMessage("Invalid phone number"),
 			check('title')
 				.optional({checkFalsy:true})
 				.trim().escape()
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('password')
 				.not().isEmpty().withMessage("Please enter a password")
 				.trim().escape()
@@ -55,21 +54,21 @@ router.put("/:id",
 				.not().isEmpty()
 				.trim().escape()
 				.withMessage("Username required")
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('user.firstName')
 				.not().isEmpty()
 				.trim().escape()
 				.withMessage("First Name required")
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('user.lastName')
 				.not().isEmpty()
 				.trim().escape()
 				.withMessage("Last Name required")
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('user.email')
 				.optional({checkFalsy: true})
 				.isEmail().withMessage("Please provide a valid email address")
-				.isLength({max:30}).withMessage("30 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('user.phone')
 				.optional({checkFalsy: true})
 				.trim().escape()
@@ -77,7 +76,7 @@ router.put("/:id",
 			check('user.title')
 				.optional({checkFalsy:true})
 				.trim().escape()
-				.isLength({max:20}).withMessage("20 characters max per input"),
+				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('user.password')
 				.optional({checkFalsy:true})
 				.not().isEmpty().withMessage("Please enter a password")
