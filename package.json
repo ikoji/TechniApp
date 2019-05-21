@@ -17,6 +17,7 @@
     "express-session": "^1.15.6",
     "express-validator": "^5.3.1",
     "helmet": "^3.18.0",
+    "libphonenumber-js": "^1.7.18",
     "method-override": "^3.0.0",
     "moment": "^2.24.0",
     "mongoose": "^5.4.2",

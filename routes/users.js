@@ -3,6 +3,8 @@ const express	= require("express"),
 	User		= require("../models/user"),
 	middleware	= require("../middleware");
 const { check, validationResult } = require('express-validator/check');
+const { sanitize } = require('express-validator/filter');
+const { parsePhoneNumberFromString } = require('libphonenumber-js');
 
 router.get("/", middleware.isLoggedIn, allUsers);
 router.get("/new", middleware.isAdmin, newUserRoute);
@@ -30,7 +32,12 @@ router.post("/",
 			check('phone')
 				.optional({checkFalsy: true})
 				.trim().escape()
-				.isMobilePhone().withMessage("Invalid phone number"),
+				.isMobilePhone('en-CA').withMessage("Invalid phone number"),
+			sanitize('phone')
+				.customSanitizer(value => {
+					var phone = parsePhoneNumberFromString(value, 'CA').formatNational();
+					return phone;
+				}),
 			check('title')
 				.optional({checkFalsy:true})
 				.trim().escape()
@@ -72,7 +79,12 @@ router.put("/:id",
 			check('user.phone')
 				.optional({checkFalsy: true})
 				.trim().escape()
-				.isMobilePhone().withMessage("Invalid phone number"),
+				.isMobilePhone('en-CA').withMessage("Invalid phone number"),
+			sanitize('user.phone')
+				.customSanitizer(value => {
+					var phone = parsePhoneNumberFromString(value, 'CA').formatNational();
+					return phone;
+				}),
 			check('user.title')
 				.optional({checkFalsy:true})
 				.trim().escape()

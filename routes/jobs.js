@@ -3,6 +3,8 @@ var express = require("express"),
 	Job     = require("../models/job"),
 	middleware = require("../middleware");
 const { check, validationResult } = require('express-validator/check');
+const { sanitize } = require('express-validator/filter');
+const { parsePhoneNumberFromString } = require('libphonenumber-js');
 
 router.get("/", middleware.isLoggedIn, allJobs);
 router.get("/new", middleware.isLoggedIn, newJobRoute);
@@ -29,7 +31,12 @@ router.post("/", middleware.isLoggedIn,
 				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('phone')
 				.optional({checkFalsy: true})
-				.isMobilePhone().withMessage("Invalid phone number"),
+				.isMobilePhone('en-CA').withMessage("Invalid phone number"),
+			sanitize('phone')
+				.customSanitizer(value => {
+					var phone = parsePhoneNumberFromString(value, 'CA').formatNational();
+					return phone;
+				}),
 			check('email')
 				.optional({checkFalsy: true})
 				.isEmail().withMessage("Please provide a valid email address")
@@ -96,7 +103,12 @@ router.put("/:id", middleware.isLoggedIn,
 				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('job[phone]')
 				.optional({checkFalsy: true})
-				.isMobilePhone().withMessage("Invalid phone number"),
+				.isMobilePhone('en-CA').withMessage("Invalid phone number"),
+			sanitize('job[phone]')
+				.customSanitizer(value => {
+					var phone = parsePhoneNumberFromString(value, 'CA').formatNational();
+					return phone;
+				}),
 			check('job[email]')
 				.optional({checkFalsy: true})
 				.isEmail().withMessage("Please provide a valid email address")
