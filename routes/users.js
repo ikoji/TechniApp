@@ -32,11 +32,12 @@ router.post("/",
 			check('phone')
 				.optional({checkFalsy: true})
 				.trim().escape()
-				.isMobilePhone('en-CA').withMessage("Invalid phone number"),
-			sanitize('phone')
+				.isMobilePhone('en-CA').withMessage("Invalid phone number")
 				.customSanitizer(value => {
-					var phone = parsePhoneNumberFromString(value, 'CA').formatNational();
-					return phone;
+					var phone = parsePhoneNumberFromString(value, 'CA');
+					if(phone){
+						return phone.formatNational();
+					}
 				}),
 			check('title')
 				.optional({checkFalsy:true})
@@ -79,11 +80,12 @@ router.put("/:id",
 			check('user.phone')
 				.optional({checkFalsy: true})
 				.trim().escape()
-				.isMobilePhone('en-CA').withMessage("Invalid phone number"),
-			sanitize('user.phone')
+				.isMobilePhone('en-CA').withMessage("Invalid phone number")
 				.customSanitizer(value => {
-					var phone = parsePhoneNumberFromString(value, 'CA').formatNational();
-					return phone;
+					var phone = parsePhoneNumberFromString(value, 'CA');
+					if(phone){
+						return phone.formatNational();
+					}
 				}),
 			check('user.title')
 				.optional({checkFalsy:true})

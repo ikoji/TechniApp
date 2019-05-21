@@ -31,11 +31,12 @@ router.post("/", middleware.isLoggedIn,
 				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('phone')
 				.optional({checkFalsy: true})
-				.isMobilePhone('en-CA').withMessage("Invalid phone number"),
-			sanitize('phone')
+				.isMobilePhone('en-CA').withMessage("Invalid phone number")
 				.customSanitizer(value => {
-					var phone = parsePhoneNumberFromString(value, 'CA').formatNational();
-					return phone;
+					var phone = parsePhoneNumberFromString(value, 'CA');
+					if(phone){
+						return phone.formatNational();
+					}
 				}),
 			check('email')
 				.optional({checkFalsy: true})
@@ -103,11 +104,12 @@ router.put("/:id", middleware.isLoggedIn,
 				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('job[phone]')
 				.optional({checkFalsy: true})
-				.isMobilePhone('en-CA').withMessage("Invalid phone number"),
-			sanitize('job[phone]')
+				.isMobilePhone('en-CA').withMessage("Invalid phone number")
 				.customSanitizer(value => {
-					var phone = parsePhoneNumberFromString(value, 'CA').formatNational();
-					return phone;
+					var phone = parsePhoneNumberFromString(value, 'CA');
+					if(phone){
+						return phone.formatNational();
+					}
 				}),
 			check('job[email]')
 				.optional({checkFalsy: true})
