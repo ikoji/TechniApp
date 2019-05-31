@@ -174,9 +174,9 @@
 							<!--check if comment has been edited or is original and show when last edited-->
 							<span class="small">
 								<% if(moment(comment.modifiedAt).isAfter(comment.createdAt)){ %>
-									Edited <%= moment(comment.modifiedAt).fromNow() %>
+									Edited <%= moment(comment.modifiedAt).calendar() %>
 								<% } else { %>
-									Created <%= moment(comment.createdAt).fromNow() %>
+									Created <%= moment(comment.createdAt).calendar() %>
 								<% } %>
 							</span>
 						</div>
