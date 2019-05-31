@@ -16,6 +16,7 @@
             type="text/javascript" 
             src="https://cdn.datatables.net/v/bs4/dt-1.10.18/fh-3.1.4/r-2.2.2/datatables.min.js"></script>
         <script>
+        <% console.log(currentUser);%>
             $(document).ready( function () {
                 $('#jobsTable').DataTable({
                     responsive: {
@@ -30,7 +31,11 @@
                         // headerOffset: $('.navbar').height()
                     },
                     "pageLength": 25,
-                    "order": [[ 5, "desc" ]]
+                    <% if(currentUser.username === 'nadia' || 'kayla') { %>
+                        "order": [[ 0, "desc" ]]
+                    <% } else { %>
+                        "order": [[ 5, "desc" ]]
+                    <% } %>
                 });
             } );
             $(document).ready( function () {
