@@ -23,7 +23,7 @@
 					<div class="form-row">
 						<div class="form-group col">
 							<label for="inputJobId"><strong>Job ID</strong></label>
-							<input class="form-control" type="text" name="jobId" id="inputJobId"placeholder="YYTXXX (Year + Town + Number)">
+							<input class="form-control" type="text" name="jobId" id="inputJobId" placeholder="YYTXXX (Year + Town + Number)" value="<%= newJob.jobId %>">
 						</div>
 						<div class="form-group col">
 							<label for="inputStatus"><strong>Job Status</strong></label>
@@ -52,35 +52,35 @@
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="inputFirstName">First Name</label>
-						<input type="text" class="form-control" name="firstName" id="inputFirstName" placeholder="Jane">
+						<input type="text" class="form-control" name="firstName" id="inputFirstName" placeholder="Jane" value="<%= newJob.clientName.firstName %>">
 					</div>
 					<div class="form-group col-md-6">
 						<label for="inputLastName">Last Name</label>
-						<input type="text" class="form-control" name="lastName" id="inputLastName" placeholder="Doe">
+						<input type="text" class="form-control" name="lastName" id="inputLastName" placeholder="Doe" value="<%= newJob.clientName.lastName %>">
 					</div>
 					<div class="form-group col-md-6">
 						<label for="inputPhone">Phone Number</label>
-						<input type="text" class="form-control" name="phone" id="inputPhone" placeholder="(123) 456-7890">
+						<input type="text" class="form-control" name="phone" id="inputPhone" placeholder="(123) 456-7890" value="<%= newJob.phone %>">
 					</div>
 					<div class="form-group col-md-6">
 						<label for="inputEmail">Email</label>
-						<input type="email" class="form-control" name="email" id="inputEmail" placeholder="janedoe@email.ca">
+						<input type="email" class="form-control" name="email" id="inputEmail" placeholder="janedoe@email.ca" value="<%= newJob.email %>">
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-8">
 						<label for="inputAddress">Address</label>
-						<input type="text" class="form-control" name="street" id="inputAddress" placeholder="1234 Main St">
+						<input type="text" class="form-control" name="street" id="inputAddress" placeholder="1234 Main St" value="<%= newJob.address.street %>">
 					</div>
 					<div class="form-group col-md-4">
 						<label for="inputAddress2">Address 2</label>
-						<input type="text" class="form-control" name="apartment" id="inputAddress2" placeholder="Apartment, floor">
+						<input type="text" class="form-control" name="apartment" id="inputAddress2" placeholder="Apartment, floor" value="<%= newJob.address.apartment %>">
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="inputCity">City</label>
-						<input type="text" class="form-control" name="city" id="inputCity">
+						<input type="text" class="form-control" name="city" id="inputCity" value="<%= newJob.address.city %>">
 					</div>
 					<div class="form-group col-md-3">
 						<label for="inputProvince">Province</label>
@@ -102,7 +102,7 @@
 					</div>
 					<div class="form-group col-md-3">
 						<label for="inputPostal">Postal Code</label>
-						<input type="text" class="form-control" name="postal" id="inputPostal" placeholder="V8X X0X">
+						<input type="text" class="form-control" name="postal" id="inputPostal" placeholder="V8X X0X" value="<%= newJob.address.postal %>">
 					</div>
 				</div>
 			</fieldset>
@@ -118,35 +118,35 @@
 					<div class="form-row">
 						<div class="form-group col-md-4">
 							<label for="inputInsuranceCompany">Insurance Company</label>
-							<input type="text" class="form-control" name="insComp" id="inputInsuranceCompany" placeholder="">
+							<input type="text" class="form-control" name="insComp" id="inputInsuranceCompany" placeholder="" value="<%= newJob.insComp %>">
 						</div>
 						<div class="form-group col-md-4">
 							<label for="inputInsPolNum">Policy Number</label>
-							<input type="text" class="form-control" name="policyNum" id="inputInsPolNum" placeholder="Policy #">
+							<input type="text" class="form-control" name="policyNum" id="inputInsPolNum" placeholder="Policy #" value="<%= newJob.policyNum %>">
 						</div>
 						<div class="form-group col-md-4">
 							<label for="inputInsClaimNum">Claim Number</label>
-							<input type="text" class="form-control" name="claimNum" id="inputInsClaimNum" placeholder="Claim #">
+							<input type="text" class="form-control" name="claimNum" id="inputInsClaimNum" placeholder="Claim #" value="<%= newJob.claimNum %>">
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-4">
 							<label for="inputAdjustingCompany">Adjusting Company</label>
-							<input type="text" class="form-control" name="adjComp" id="inputAdjustingCompany" placeholder="">
+							<input type="text" class="form-control" name="adjComp" id="inputAdjustingCompany" placeholder="" value="<%= newJob.adjComp %>">
 						</div>
 						<div class="form-group col-md-4">
 							<label for="inputAdjName">Adjuster</label>
-							<input type="text" class="form-control" name="adjuster" id="inputAdjName" placeholder="Name">
+							<input type="text" class="form-control" name="adjuster" id="inputAdjName" placeholder="Name" value="<%= newJob.adjuster %>">
 						</div>
 						<div class="form-group col-md-4">
 							<label for="inputAdjClaimNum">File Number</label>
-							<input type="text" class="form-control" name="fileNum" id="inputAdjClaimNum" placeholder="File #">
+							<input type="text" class="form-control" name="fileNum" id="inputAdjClaimNum" placeholder="File #" value="<%= newJob.fileNum %>">
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="inputLossDate">Date of Loss</label>
-							<input type="date" class="form-control" name="dateOfLoss" id="inputLossDate" placeholder="">
+							<input type="date" class="form-control" name="dateOfLoss" id="inputLossDate" placeholder="" value="<%= newJob.dateOfLoss %>">
 						</div>
 						<div class="form-group col-md-6">
 							<label for="inputDeductible">Deductible</label>        				    
@@ -154,7 +154,7 @@
 								<div class="input-group-prepend">
 									<span class="input-group-text">$</span>
 								</div>
-								<input type="text" class="form-control" name="deductible" id="inputDeductible" placeholder="Amount">                                  
+								<input type="text" class="form-control" name="deductible" id="inputDeductible" placeholder="Amount" value="<%= newJob.deductible %>">                                  
 								<div class="input-group-append">
 									<span class="input-group-text">.00</span>
 								</div>
