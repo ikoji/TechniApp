@@ -65,6 +65,7 @@ function createComment(req, res){
 				        comment.author.fullName = req.user.fullName;
 						// connect new comment to job
 						comment.save();
+						job.modifiedAt = Date.now();
 						job.comments.push(comment);
 						job.save();
 						// redirect to job show page
