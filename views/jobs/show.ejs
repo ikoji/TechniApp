@@ -8,7 +8,7 @@
 					<h3 class="headtitle">
 						<ol class="breadcrumb bg-transparent headtitle">
 							<li class="breadcrumb-item"><a class="text-dark" href="/jobs/"><strong>Jobs</strong></a></li>
-							<li class="breadcrumb-item active" aria-current="page"><%= job.jobId %> - <%= job.lastFirstName %></li>
+							<li class="breadcrumb-item active" aria-current="page"><%= job.jobId %> - <%= job.titleName %></li>
 						</ol>
 					</h3>
 				</nav>
@@ -69,10 +69,28 @@
 									<th scope="row" class="col-5 col-md-3 text-right">Name</td>
 									<td><%=job.fullName%></td>
 								</tr>
+								<% if(job.altContact){ %>
+									<tr class="d-flex">
+										<th scope="row" class="col-5 col-md-3 text-right">Alt Contact</td>
+										<td><%=job.altContact%></td>
+									</tr>
+								<% } %>
+								<% if(job.businessName){ %>
+									<tr class="d-flex">
+										<th scope="row" class="col-5 col-md-3 text-right">Business Name</td>
+										<td><%=job.businessName%></td>
+									</tr>
+								<% } %>
 								<tr class="d-flex">
 									<th scope="row" class="col-5 col-md-3 text-right">Phone Number</td>
 									<td><%=job.phone%></td>
 								</tr>
+								<% if(job.altPhone){ %>
+									<tr class="d-flex">
+										<th scope="row" class="col-5 col-md-3 text-right">Alt Phone Number</td>
+										<td><%=job.altPhone%></td>
+									</tr>
+								<% } %>
 								<tr class="d-flex">
 									<th scope="row" class="col-5 col-md-3 text-right">Email</td>
 									<td><%=job.email%></td>
@@ -103,12 +121,12 @@
 									<td><%=job.insComp%></td>
 								</tr>
 								<tr class="d-flex">
-									<th scope="row" class="col-6  text-right">Policy Number</th>
-									<td><%=job.policyNum%></td>
-								</tr>
-								<tr class="d-flex">
 									<th scope="row" class="col-6  text-right">Claim Number</th>
 									<td><%=job.claimNum%></td>
+								</tr>
+								<tr class="d-flex">
+									<th scope="row" class="col-6  text-right">Policy Number</th>
+									<td><%=job.policyNum%></td>
 								</tr>
 							</tbody>
 						</table>
@@ -147,6 +165,26 @@
 								<tr class="d-flex">
 									<th scope="row" class="col-6  text-right">Deductible</th>
 									<td><%=job.deductible%></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="col-md-6 p-0">
+						<table class="table table-borderless m-0">
+							<tbody>
+								<tr class="d-flex">
+									<th scope="row" class="col-6  text-right">Damage Type</th>
+									<td><%=job.dmgType%></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="col-md-6 p-0">
+						<table class="table table-borderless m-0">
+							<tbody>
+								<tr class="d-flex">
+									<th scope="row" class="col-6  text-right">Folder</th>
+									<td><%=job.folder%></td>
 								</tr>
 							</tbody>
 						</table>

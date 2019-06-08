@@ -8,7 +8,10 @@ var jobSchema = new mongoose.Schema({
         firstName: String,
         lastName:String,
     },
+    altContact: String,
+    businessName: String,
     phone: String,
+    altPhone: String,
     email: String,
     address: {
         street: String,
@@ -24,6 +27,8 @@ var jobSchema = new mongoose.Schema({
     adjuster: String,
     fileNum: String,
     dateOfLoss: Date,
+    dmgType: String,
+    folder: String,
     deductible: Number,
     createdAt: { type: Date, default: Date.now },
     modifiedAt: { type: Date, default: Date.now },
@@ -46,5 +51,13 @@ jobSchema.virtual('lastFirstName').get(function (){
 jobSchema.virtual('fullAddress').get(function (){
     return this.address.apartment + " " + this.address.street + ", " + this.address.city + " " + this.address.province + " " + this.address.postal;
 });
+
+jobSchema.virtual('titleName').get(function (){
+    if(this.clientName.lastName){
+        return this.lastFirstName;
+    } else {
+        return this.businessName;
+    }
+})
 
 module.exports = mongoose.model("Job", jobSchema);

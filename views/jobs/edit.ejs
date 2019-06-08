@@ -1,8 +1,5 @@
 <% include ../partials/header %>
 
-
-
-
 <div class="card maincardbg shadow my-4 mx-md-5">
 	<div class="card-header shadow-sm bg-light">
 		<div class="no-gutters align-items-center d-flex justify-content-between">
@@ -11,7 +8,7 @@
 					<h3 class="headtitle">
 						<ol class="breadcrumb bg-transparent headtitle">
 							<li class="breadcrumb-item"><a class="text-dark" href="/jobs/"><strong>Jobs</strong></a></li>
-							<li class="breadcrumb-item"><a class="text-dark" href="/jobs/<%=job._id%>"><strong><%= job.jobId %> - <%= job.lastFirstName %></strong></a></li>
+							<li class="breadcrumb-item"><a class="text-dark" href="/jobs/<%=job._id%>"><strong><%= job.jobId %> - <%= job.titleName %></strong></a></li>
 							<li class="breadcrumb-item active" aria-current="page">Edit</li>
 						</ol>
 					</h3>
@@ -31,7 +28,7 @@
 							</div>
 							<div class="modal-body">
 								<p>Deleting is permanent and cannot be undone.</p>
-								Are you sure you want to delete <strong><%= job.jobId %> - <%= job.lastFirstName %></strong>?
+								Are you sure you want to delete <strong><%= job.jobId %> - <%= job.titleName %></strong>?
 
 							</div>
 							<div class="modal-footer shadow-sm justify-content-between bg-light">
@@ -113,10 +110,22 @@
 							<input type="text" class="form-control" name="job[clientName][lastName]" id="inputLastName" value="<%=job.clientName.lastName%>">
 						</div>
 						<div class="form-group col-md-6">
+							<label for="inputAltContact">Alt Contact</label>
+							<input type="text" class="form-control" name="job[altContact]" id="inputAltContact" value="<%= job.altContact %>">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="inputBusinessName">Business Name</label>
+							<input type="text" class="form-control" name="job[businessName]" id="inputBusinessName" value="<%= job.businessName %>">
+						</div>
+						<div class="form-group col-md-4">
 							<label for="inputPhone">Phone Number</label>
 							<input type="tel" class="form-control" name="job[phone]" id="inputPhone" value="<%=job.phone%>">
 						</div>
-						<div class="form-group col-md-6">
+						<div class="form-group col-md-4">
+							<label for="inputAltPhone">Alt Phone Number</label>
+							<input type="text" class="form-control" name="job[altPhone]" id="inputAltPhone" value="<%= job.altPhone %>">
+						</div>
+						<div class="form-group col-md-4">
 							<label for="inputEmail">Email</label>
 							<input type="email" class="form-control" name="job[email]" id="inputEmail" value="<%=job.email%>">
 						</div>
@@ -174,12 +183,12 @@
 								<input type="text" class="form-control" name="job[insComp]" id="inputInsuranceCompany" value="<%=job.insComp%>">
 							</div>
 							<div class="form-group col-md-4">
-								<label for="inputInsPolNum">Policy Number</label>
-								<input type="text" class="form-control" name="job[policyNum]" id="inputInsPolNum" value="<%=job.policyNum%>">
-							</div>
-							<div class="form-group col-md-4">
 								<label for="inputInsClaimNum">Claim Number</label>
 								<input type="text" class="form-control" name="job[claimNum]" id="inputInsClaimNum" value="<%=job.claimNum%>">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputInsPolNum">Policy Number</label>
+								<input type="text" class="form-control" name="job[policyNum]" id="inputInsPolNum" value="<%=job.policyNum%>">
 							</div>
 						</div>
 						<div class="form-row">
@@ -197,11 +206,11 @@
 							</div>
 						</div>
 						<div class="form-row">
-							<div class="form-group col-md-6">
+							<div class="form-group col-md-3">
 								<label for="inputLossDate">Date of Loss</label>
 								<input type="date" class="form-control" name="job[dateOfLoss]" id="inputLossDate" value="<%= moment(job.dateOfLoss).format("YYYY-MM-DD") %>">
 							</div>
-							<div class="form-group col-md-6">
+							<div class="form-group col-md-3">
 								<label for="inputDeductible">Deductible</label>
 								<div class="input-group">
 									<div class="input-group-prepend">
@@ -212,6 +221,14 @@
 										<span class="input-group-text">.00</span>
 									</div>
 								</div>
+							</div>
+							<div class="form-group col-md-3">
+								<label for="inputDmgType">Damage Type</label>
+								<input type="text" class="form-control" name="job[dmgType]" id="inputDmgType" value="<%= job.dmgType %>">
+							</div>
+							<div class="form-group col-md-3">
+								<label for="inputFolder">Folder</label>
+								<input type="text" class="form-control" name="job[folder]" id="inputFolder" value="<%= job.folder %>">
 							</div>
 						</div>
 					</div>

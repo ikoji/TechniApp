@@ -50,25 +50,29 @@
 					<fieldset>
 				
 				<div class="form-row">
-					<div class="form-group col-md-4">
+					<div class="form-group col-md-6">
 						<label for="inputFirstName">First Name</label>
 						<input type="text" class="form-control" name="firstName" id="inputFirstName" placeholder="Jane" value="<%= newJob.clientName.firstName %>">
 					</div>
-					<div class="form-group col-md-4">
+					<div class="form-group col-md-6">
 						<label for="inputLastName">Last Name</label>
 						<input type="text" class="form-control" name="lastName" id="inputLastName" placeholder="Doe" value="<%= newJob.clientName.lastName %>">
 					</div>
-					<div class="form-group col-md-4">
-						<label for="inputLastName">Alt Name</label>
-						<input disabled type="text" class="form-control" name="miscName" id="inputMiscName" placeholder="Alt Contact / Business" value="<%= newJob.clientName.miscName %>">
+					<div class="form-group col-md-6">
+						<label for="inputAltContact">Alt Contact</label>
+						<input type="text" class="form-control" name="altContact" id="inputAltContact" placeholder="Alt Name" value="<%= newJob.altContact %>">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="inputBusinessName">Business Name</label>
+						<input type="text" class="form-control" name="businessName" id="inputBusinessName" placeholder="Technicon Industries" value="<%= newJob.businessName %>">
 					</div>
 					<div class="form-group col-md-4">
 						<label for="inputPhone">Phone Number</label>
 						<input type="text" class="form-control" name="phone" id="inputPhone" placeholder="(123) 456-7890" value="<%= newJob.phone %>">
 					</div>
 					<div class="form-group col-md-4">
-						<label for="inputPhone">Alt Phone Number</label>
-						<input disabled type="text" class="form-control" name="altPhone" id="inputAltPhone" placeholder="(123) 456-7890" value="<%= newJob.altPhone %>">
+						<label for="inputAltPhone">Alt Phone Number</label>
+						<input type="text" class="form-control" name="altPhone" id="inputAltPhone" placeholder="(123) 456-7890" value="<%= newJob.altPhone %>">
 					</div>
 					<div class="form-group col-md-4">
 						<label for="inputEmail">Email</label>
@@ -129,12 +133,12 @@
 							<input type="text" class="form-control" name="insComp" id="inputInsuranceCompany" placeholder="" value="<%= newJob.insComp %>">
 						</div>
 						<div class="form-group col-md-4">
-							<label for="inputInsPolNum">Policy Number</label>
-							<input type="text" class="form-control" name="policyNum" id="inputInsPolNum" placeholder="Policy #" value="<%= newJob.policyNum %>">
-						</div>
-						<div class="form-group col-md-4">
 							<label for="inputInsClaimNum">Claim Number</label>
 							<input type="text" class="form-control" name="claimNum" id="inputInsClaimNum" placeholder="Claim #" value="<%= newJob.claimNum %>">
+						</div>
+						<div class="form-group col-md-4">
+							<label for="inputInsPolNum">Policy Number</label>
+							<input type="text" class="form-control" name="policyNum" id="inputInsPolNum" placeholder="Policy #" value="<%= newJob.policyNum %>">
 						</div>
 					</div>
 					<div class="form-row">
@@ -157,14 +161,6 @@
 							<input type="date" class="form-control" name="dateOfLoss" id="inputLossDate" placeholder="" value="<%= newJob.dateOfLoss %>">
 						</div>
 						<div class="form-group col-md-3">
-							<label for="inputLossDate">Damage Type</label>
-							<input disabled type="text" class="form-control" name="damageType" id="inputDamageType" placeholder="Fire" value="<%= newJob.damageType %>">
-						</div>
-						<div class="form-group col-md-3">
-							<label for="inputLossDate">EME / REC</label>
-							<input disabled type="text" class="form-control" name="emeRec" id="inputEmeRec" placeholder="" value="<%= newJob.emeRec %>">
-						</div>
-						<div class="form-group col-md-3">
 							<label for="inputDeductible">Deductible</label>        				    
 							<div class="input-group">
 								<div class="input-group-prepend">
@@ -175,6 +171,14 @@
 									<span class="input-group-text">.00</span>
 								</div>
 							</div>
+						</div>
+						<div class="form-group col-md-3">
+							<label for="inputDmgType">Damage Type</label>
+							<input type="text" class="form-control" name="dmgType" id="inputDmgType" placeholder="Fire" value="<%= newJob.dmgType %>">
+						</div>
+						<div class="form-group col-md-3">
+							<label for="inputFolder">Folder</label>
+							<input type="text" class="form-control" name="folder" id="inputFolder" placeholder="EME / REC" value="<%= newJob.folder %>">
 						</div>
 					</div>
 				</div>

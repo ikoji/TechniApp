@@ -2,8 +2,7 @@ var express = require("express"),
 	router  = express.Router(),
 	Job     = require("../models/job"),
 	middleware = require("../middleware");
-const { check, validationResult } = require('express-validator/check');
-const { sanitize } = require('express-validator/filter');
+const { check, oneOf, validationResult } = require('express-validator/check');
 const { parsePhoneNumberFromString } = require('libphonenumber-js');
 
 router.get("/", middleware.isLoggedIn, allJobs);
@@ -23,15 +22,32 @@ router.post("/", middleware.isLoggedIn,
 				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('firstName')
 				.optional({checkFalsy: true})
-				.not().isEmpty()
 				.isLength({max:40}).withMessage("40 characters max per input"),
+			oneOf([
+				check('lastName').not().isEmpty(),
+				check('businessName').not().isEmpty()
+			], "Last Name or Business Name required"),
 			check('lastName')
-				.not().isEmpty()
-				.withMessage("Last Name required")
+				.optional({checkFalsy: true})
+				.isLength({max:40}).withMessage("40 characters max per input"),
+			check('businessName')
+				.optional({checkFalsy: true})
+				.isLength({max:60}).withMessage("60 characters max per input"),
+			check('altContact')
+				.optional({checkFalsy: true})
 				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('phone')
 				.optional({checkFalsy: true})
 				.isMobilePhone('en-CA').withMessage("Invalid phone number")
+				.customSanitizer(value => {
+					var phone = parsePhoneNumberFromString(value, 'CA');
+					if(phone){
+						return phone.formatNational();
+					}
+				}),
+			check('altPhone')
+				.optional({checkFalsy: true})
+				.isMobilePhone('en-CA').withMessage("Invalid alt phone number")
 				.customSanitizer(value => {
 					var phone = parsePhoneNumberFromString(value, 'CA');
 					if(phone){
@@ -77,7 +93,13 @@ router.post("/", middleware.isLoggedIn,
 				.optional({checkFalsy:true})
 				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('dateOfLoss')
-				.optional({checkFalsy:true})
+				.optional({checkFalsy:true}),
+			check('dmgType')
+				.optional({checkFalsy: true})
+				.isLength({max:40}).withMessage("40 characters max per input"),
+			check('folder')
+				.optional({checkFalsy: true})
+				.isLength({max:40}).withMessage("40 characters max per input")
 			], createJob);
 router.get("/:id", middleware.isLoggedIn, showJob);
 router.get("/:id/edit", middleware.isLoggedIn, editJob);
@@ -98,13 +120,31 @@ router.put("/:id", middleware.isLoggedIn,
 			check('job[clientName][firstName]')
 				.optional({checkFalsy: true})
 				.isLength({max:40}).withMessage("40 characters max per input"),
+			oneOf([
+				check('job[clientName][lastName]').not().isEmpty(),
+				check('job[businessName]').not().isEmpty()
+			], "Last Name or Business Name required"),
 			check("job[clientName][lastName]")
-				.not().isEmpty()
-				.withMessage("Last Name required")
+				.optional({checkFalsy: true})
+				.isLength({max:40}).withMessage("40 characters max per input"),
+			check('job[businessName]')
+				.optional({checkFalsy: true})
+				.isLength({max:60}).withMessage("60 characters max per input"),
+			check('job[altContact]')
+				.optional({checkFalsy: true})
 				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('job[phone]')
 				.optional({checkFalsy: true})
 				.isMobilePhone('en-CA').withMessage("Invalid phone number")
+				.customSanitizer(value => {
+					var phone = parsePhoneNumberFromString(value, 'CA');
+					if(phone){
+						return phone.formatNational();
+					}
+				}),
+			check('job[altPhone]')
+				.optional({checkFalsy: true})
+				.isMobilePhone('en-CA').withMessage("Invalid alt phone number")
 				.customSanitizer(value => {
 					var phone = parsePhoneNumberFromString(value, 'CA');
 					if(phone){
@@ -151,7 +191,13 @@ router.put("/:id", middleware.isLoggedIn,
 				.optional({checkFalsy:true})
 				.isLength({max:40}).withMessage("40 characters max per input"),
 			check('job[dateOfLoss]')
+				.optional({checkFalsy:true}),
+			check('job[dmgType]')
 				.optional({checkFalsy:true})
+				.isLength({max:40}).withMessage("40 characters max per input"),
+			check('job[folder]')
+				.optional({checkFalsy:true})
+				.isLength({max:40}).withMessage("40 characters max per input")
 			], updateJob);
 router.delete("/:id", middleware.isLoggedIn, deleteJob);
 
@@ -179,7 +225,10 @@ function newJobRoute(req, res) {
 					firstName: null,
 					lastName: null
 				},
+			altContact: null,
+			businessName: null,
 			phone: null,
+			altPhone: null,
 			email: null,
 			address:
 				{
@@ -196,6 +245,8 @@ function newJobRoute(req, res) {
 			adjuster: null,
 			fileNum: null,
 			dateOfLoss: null,
+			dmgType: null,
+			folder: null,
 			deductible: null,
 			createdAt: null,
 			modifiedAt: null
@@ -211,7 +262,10 @@ function createJob(req, res){
 		status			= req.body.status,
 		firstName		= req.body.firstName,
 		lastName 		= req.body.lastName,
+		altContact		= req.body.altContact,
+		businessName	= req.body.businessName,
 		phone           = req.body.phone,
+		altPhone		= req.body.altPhone,
 		email			= req.body.email,
 		street          = req.body.street,
 		apartment       = req.body.apartment,
@@ -225,6 +279,8 @@ function createJob(req, res){
 		adjuster        = req.body.adjuster,
 		fileNum         = req.body.fileNum,
 		dateOfLoss      = req.body.dateOfLoss,
+		dmgType			= req.body.dmgType,
+		folder			= req.body.folder,
 		deductible		= req.body.deductible,
 		createdAt		= req.body.createdAt,
 		modifiedAt		= req.body.modifiedAt,
@@ -236,7 +292,10 @@ function createJob(req, res){
 							firstName: firstName,
 							lastName: lastName
 						},
+					altContact: altContact,
+					businessName: businessName,
 					phone: phone,
+					altPhone: altPhone,
 					email: email,
 					address:
 						{
@@ -253,6 +312,8 @@ function createJob(req, res){
 					adjuster: adjuster,
 					fileNum: fileNum,
 					dateOfLoss: dateOfLoss,
+					dmgType: dmgType,
+					folder: folder,
 					deductible: deductible,
 					createdAt: createdAt,
 					modifiedAt: modifiedAt
