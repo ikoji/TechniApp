@@ -82,6 +82,10 @@
 									</tr>
 								<% } %>
 								<tr class="d-flex">
+									<th scope="row" class="col-5 col-md-3 text-right">Address</td>
+									<td><%=job.fullAddress%></td>
+								</tr>
+								<tr class="d-flex">
 									<th scope="row" class="col-5 col-md-3 text-right">Phone Number</td>
 									<td><%=job.phone%></td>
 								</tr>
@@ -95,10 +99,7 @@
 									<th scope="row" class="col-5 col-md-3 text-right">Email</td>
 									<td><%=job.email%></td>
 								</tr>
-								<tr class="d-flex">
-									<th scope="row" class="col-5 col-md-3 text-right">Address</td>
-									<td><%=job.fullAddress%></td>
-								</tr>
+
 							</tbody>
 						</table>
 					</div>
@@ -201,7 +202,7 @@
 					</div>
 					<div class="">
 						<a class="btn shadow-sm btn-outline-success btn-sm" href="/jobs/<%= job._id %>/comments/new">Add Comment</a>
-					</div>  
+					</div>
 				</div>
 			</div>
 			<div class="card-body d-flex flex-column-reverse">
