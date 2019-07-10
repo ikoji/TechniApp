@@ -33,30 +33,30 @@
 								</a>
 							</td>
 							<td class="align-middle">
-								<%= job.titleName %>
+								<%- job.titleName %>
 							</td>
 							<td class="align-middle">
-								<%= job.address.street %>, <%= job.address.city %> <%= job.address.province %>
+								<%- job.address.street %>, <%- job.address.city %> <%- job.address.province %>
 							</td>
 							<td class="align-middle">
 								<%= job.phone %>
 							</td>
 							<% if(job.status === "Received"){ %>
-								<td data-order="1" class="align-middle"><%= job.status %></td>
+								<td data-order="1" class="align-middle"><%- job.status %></td>
 							<% } else if(job.status === "Quoting") { %>
-								<td data-order="2" class="align-middle"><%= job.status %></td>
+								<td data-order="2" class="align-middle"><%- job.status %></td>
 							<% } else if(job.status === "Work in Progress") { %>
-								<td data-order="3" class="align-middle"><%= job.status %></td>
+								<td data-order="3" class="align-middle"><%- job.status %></td>
 							<% } else if(job.status === "Work Finished") { %>
-								<td data-order="5" class="align-middle"><%= job.status %></td>
+								<td data-order="5" class="align-middle"><%- job.status %></td>
 							<% } else if(job.status === "Waiting for Payment") { %>
-								<td data-order="6" class="align-middle"><%= job.status %></td>
+								<td data-order="6" class="align-middle"><%- job.status %></td>
 							<% } else if(job.status === "Job Complete") { %>
-								<td data-order="7" class="align-middle"><%= job.status %></td>
+								<td data-order="7" class="align-middle"><%- job.status %></td>
 							<% } else if(job.status === "On Hold") { %>
-								<td data-order="4" class="align-middle"><%= job.status %></td>
+								<td data-order="4" class="align-middle"><%- job.status %></td>
 							<% } else { %>
-								<td data-order="8" class="align-middle"><%= job.status %></td>
+								<td data-order="8" class="align-middle"><%- job.status %></td>
 							<% } %>
 							<td data-order="<%= moment(job.modifiedAt).format() %>" class="align-middle">
 								<%= moment(job.modifiedAt).fromNow() %>

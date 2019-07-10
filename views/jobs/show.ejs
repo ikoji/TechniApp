@@ -7,8 +7,10 @@
 				<nav aria-label="breadcrumb">
 					<h3 class="headtitle">
 						<ol class="breadcrumb bg-transparent headtitle">
-							<li class="breadcrumb-item"><a class="text-dark" href="/jobs/"><strong>Jobs</strong></a></li>
-							<li class="breadcrumb-item active" aria-current="page"><%= job.jobId %> - <%= job.titleName %></li>
+							<li class="breadcrumb-item"><a class="text-dark" href="/jobs/"><strong>Jobs</strong></a>
+							</li>
+							<li class="breadcrumb-item active" aria-current="page"><%= job.jobId %> -
+								<%- job.titleName %></li>
 						</ol>
 					</h3>
 				</nav>
@@ -22,37 +24,46 @@
 		<!-- Progress Bar -->
 		<div class="shadow mx-lg-5">
 			<% if(job.status === "Quoting"){ %>
-				<div class="progress">
-					<div class="progress-bar bg-secondary" role="progressbar" style="width: 20%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"><strong>Quoting</strong></div>
-				</div>
+			<div class="progress">
+				<div class="progress-bar bg-secondary" role="progressbar" style="width: 20%;" aria-valuenow="20"
+					aria-valuemin="0" aria-valuemax="100"><strong>Quoting</strong></div>
+			</div>
 			<% } else if(job.status === "Work in Progress") { %>
-				<div class="progress">
-					<div class="progress-bar bg-info" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"><strong>Work in Progress</strong></div>
-				</div>
+			<div class="progress">
+				<div class="progress-bar bg-info" role="progressbar" style="width: 40%;" aria-valuenow="40"
+					aria-valuemin="0" aria-valuemax="100"><strong>Work in Progress</strong></div>
+			</div>
 			<% } else if(job.status === "Work Finished") { %>
-				<div class="progress">
-					<div class="progress-bar bg-success" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"><strong>Work Finished <small>(Ready for Invoice)</small></strong></div>
-				</div>
+			<div class="progress">
+				<div class="progress-bar bg-success" role="progressbar" style="width: 60%;" aria-valuenow="60"
+					aria-valuemin="0" aria-valuemax="100"><strong>Work Finished <small>(Ready for
+							Invoice)</small></strong></div>
+			</div>
 			<% } else if(job.status === "Waiting for Payment") { %>
-				<div class="progress">
-					<div class="progress-bar bg-primary" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"><strong>Waiting for Payment</strong></div>
-				</div>
+			<div class="progress">
+				<div class="progress-bar bg-primary" role="progressbar" style="width: 80%;" aria-valuenow="80"
+					aria-valuemin="0" aria-valuemax="100"><strong>Waiting for Payment</strong></div>
+			</div>
 			<% } else if(job.status === "Job Complete") { %>
-				<div class="progress">
-					<div class="progress-bar bg-light text-dark" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><strong>Job Complete <small>(Payed)</small></strong></div>
-				</div>
+			<div class="progress">
+				<div class="progress-bar bg-light text-dark" role="progressbar" style="width: 100%;" aria-valuenow="100"
+					aria-valuemin="0" aria-valuemax="100"><strong>Job Complete <small>(Payed)</small></strong></div>
+			</div>
 			<% } else if(job.status === "On Hold") { %>
-				<div class="progress">
-					<div class="progress-bar bg-warning text-dark" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><strong>On Hold</strong></div>
-				</div>
+			<div class="progress">
+				<div class="progress-bar bg-warning text-dark" role="progressbar" style="width: 100%;"
+					aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><strong>On Hold</strong></div>
+			</div>
 			<% } else if(job.status === "On Clint's Desk") { %>
-				<div class="progress">
-					<div class="progress-bar bg-danger" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"><strong>On Clint's Desk</strong></div>
-				</div>
+			<div class="progress">
+				<div class="progress-bar bg-danger" role="progressbar" style="width: 75%;" aria-valuenow="75"
+					aria-valuemin="0" aria-valuemax="100"><strong>On Clint's Desk</strong></div>
+			</div>
 			<% } else { %>
-				<div class="progress">
-					<div class="progress-bar bg-white text-dark" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><strong>Job Received</strong></div>
-				</div>
+			<div class="progress">
+				<div class="progress-bar bg-white text-dark" role="progressbar" style="width: 100%;" aria-valuenow="100"
+					aria-valuemin="0" aria-valuemax="100"><strong>Job Received</strong></div>
+			</div>
 			<% } %>
 		</div>
 		<!-- Client Info Card -->
@@ -67,33 +78,33 @@
 							<tbody>
 								<tr class="d-flex">
 									<th scope="row" class="col-5 col-md-3 text-right">Name</td>
-									<td><%=job.fullName%></td>
+									<td><%-job.fullName%></td>
 								</tr>
 								<% if(job.altContact){ %>
-									<tr class="d-flex">
-										<th scope="row" class="col-5 col-md-3 text-right">Alt Contact</td>
-										<td><%=job.altContact%></td>
-									</tr>
+								<tr class="d-flex">
+									<th scope="row" class="col-5 col-md-3 text-right">Alt Contact</td>
+									<td><%-job.altContact%></td>
+								</tr>
 								<% } %>
 								<% if(job.businessName){ %>
-									<tr class="d-flex">
-										<th scope="row" class="col-5 col-md-3 text-right">Business Name</td>
-										<td><%=job.businessName%></td>
-									</tr>
+								<tr class="d-flex">
+									<th scope="row" class="col-5 col-md-3 text-right">Business Name</td>
+									<td><%-job.businessName%></td>
+								</tr>
 								<% } %>
 								<tr class="d-flex">
 									<th scope="row" class="col-5 col-md-3 text-right">Address</td>
-									<td><%=job.fullAddress%></td>
+									<td><%-job.fullAddress%></td>
 								</tr>
 								<tr class="d-flex">
 									<th scope="row" class="col-5 col-md-3 text-right">Phone Number</td>
 									<td><%=job.phone%></td>
 								</tr>
 								<% if(job.altPhone){ %>
-									<tr class="d-flex">
-										<th scope="row" class="col-5 col-md-3 text-right">Alt Phone Number</td>
-										<td><%=job.altPhone%></td>
-									</tr>
+								<tr class="d-flex">
+									<th scope="row" class="col-5 col-md-3 text-right">Alt Phone Number</td>
+									<td><%=job.altPhone%></td>
+								</tr>
 								<% } %>
 								<tr class="d-flex">
 									<th scope="row" class="col-5 col-md-3 text-right">Email</td>
@@ -119,7 +130,7 @@
 							<tbody>
 								<tr class="d-flex">
 									<th scope="row" class="col-6  text-right">Insurance Company</th>
-									<td><%=job.insComp%></td>
+									<td><%-job.insComp%></td>
 								</tr>
 								<tr class="d-flex">
 									<th scope="row" class="col-6  text-right">Claim Number</th>
@@ -137,11 +148,11 @@
 							<tbody>
 								<tr class="d-flex">
 									<th scope="row" class="col-6 text-right">Adjusting Company</th>
-									<td><%=job.adjComp%></td>
+									<td><%-job.adjComp%></td>
 								</tr>
 								<tr class="d-flex">
 									<th scope="row" class="col-6  text-right">Adjuster</th>
-									<td><%=job.adjuster%></td>
+									<td><%-job.adjuster%></td>
 								</tr>
 								<tr class="d-flex">
 									<th scope="row" class="col-6  text-right">File Number</th>
@@ -175,7 +186,7 @@
 							<tbody>
 								<tr class="d-flex">
 									<th scope="row" class="col-6  text-right">Damage Type</th>
-									<td><%=job.dmgType%></td>
+									<td><%-job.dmgType%></td>
 								</tr>
 							</tbody>
 						</table>
@@ -185,7 +196,7 @@
 							<tbody>
 								<tr class="d-flex">
 									<th scope="row" class="col-6  text-right">Folder</th>
-									<td><%=job.folder%></td>
+									<td><%-job.folder%></td>
 								</tr>
 							</tbody>
 						</table>
@@ -201,33 +212,35 @@
 						<span class="align-middle"><strong>Comments</strong></span>
 					</div>
 					<div class="">
-						<a class="btn shadow-sm btn-outline-success btn-sm" href="/jobs/<%= job._id %>/comments/new">Add Comment</a>
+						<a class="btn shadow-sm btn-outline-success btn-sm" href="/jobs/<%= job._id %>/comments/new">Add
+							Comment</a>
 					</div>
 				</div>
 			</div>
 			<div class="card-body d-flex flex-column-reverse">
 				<% job.comments.forEach(function(comment){ %>
-					<div class="my-2">
-						<div class="d-flex justify-content-between">
-							<strong><%= comment.author.fullName %></strong>
-							<!--check if comment has been edited or is original and show when last edited-->
-							<span class="small">
-								<% if(moment(comment.modifiedAt).isAfter(comment.createdAt)){ %>
-									Edited <%= moment(comment.modifiedAt).utcOffset(-7).calendar() %>
-								<% } else { %>
-									Created <%= moment(comment.createdAt).utcOffset(-7).calendar() %>
-								<% } %>
-							</span>
-						</div>
-						<div class="d-flex justify-content-between">
-							<p>	<%= comment.text %>	</p>
-							<div>
-								<% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
-									<a class="btn shadow-sm btn-outline-warning btn-sm" href="/jobs/<%=job._id%>/comments/<%=comment._id%>/edit">Edit</a>
-								<% } %>
-							</div>
+				<div class="my-2">
+					<div class="d-flex justify-content-between">
+						<strong><%- comment.author.fullName %></strong>
+						<!--check if comment has been edited or is original and show when last edited-->
+						<span class="small">
+							<% if(moment(comment.modifiedAt).isAfter(comment.createdAt)){ %>
+							Edited <%= moment(comment.modifiedAt).utcOffset(-7).calendar() %>
+							<% } else { %>
+							Created <%= moment(comment.createdAt).utcOffset(-7).calendar() %>
+							<% } %>
+						</span>
+					</div>
+					<div class="d-flex justify-content-between">
+						<p> <%- comment.text %> </p>
+						<div>
+							<% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
+							<a class="btn shadow-sm btn-outline-warning btn-sm"
+								href="/jobs/<%=job._id%>/comments/<%=comment._id%>/edit">Edit</a>
+							<% } %>
 						</div>
 					</div>
+				</div>
 				<% }); %>
 			</div>
 		</div>

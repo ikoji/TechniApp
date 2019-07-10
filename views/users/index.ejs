@@ -30,14 +30,14 @@
 						<tr>
 							<td class="align-middle">
 								<a href="/users/<%= user._id %>/edit">
-									<strong><%= user.username %></strong>
+									<strong><%- user.username %></strong>
 								</a>
 							</td>
 							<td class="align-middle">
-								<%= user.firstName %> <%=user.lastName%>
+								<%- user.firstName %> <%-user.lastName%>
 							</td>
 							<td class="align-middle">
-								<%= user.title %>
+								<%- user.title %>
 							</td>
 							<td class="align-middle">
 								<%= user.phone %>

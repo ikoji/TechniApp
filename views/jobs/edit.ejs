@@ -8,7 +8,7 @@
 					<h3 class="headtitle">
 						<ol class="breadcrumb bg-transparent headtitle">
 							<li class="breadcrumb-item"><a class="text-dark" href="/jobs/"><strong>Jobs</strong></a></li>
-							<li class="breadcrumb-item"><a class="text-dark" href="/jobs/<%=job._id%>"><strong><%= job.jobId %> - <%= job.titleName %></strong></a></li>
+							<li class="breadcrumb-item"><a class="text-dark" href="/jobs/<%=job._id%>"><strong><%= job.jobId %> - <%- job.titleName %></strong></a></li>
 							<li class="breadcrumb-item active" aria-current="page">Edit</li>
 						</ol>
 					</h3>
@@ -28,7 +28,7 @@
 							</div>
 							<div class="modal-body">
 								<p>Deleting is permanent and cannot be undone.</p>
-								Are you sure you want to delete <strong><%= job.jobId %> - <%= job.titleName %></strong>?
+								Are you sure you want to delete <strong><%= job.jobId %> - <%- job.titleName %></strong>?
 
 							</div>
 							<div class="modal-footer shadow-sm justify-content-between bg-light">
@@ -103,19 +103,19 @@
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="inputFirstName">First Name</label>
-							<input type="text" class="form-control" name="job[clientName][firstName]" id="inputFirstName" value="<%=job.clientName.firstName%>">
+							<input type="text" class="form-control" name="job[clientName][firstName]" id="inputFirstName" value="<%-job.clientName.firstName%>">
 						</div>
 						<div class="form-group col-md-6">
 							<label for="inputLastName">Last Name</label>
-							<input type="text" class="form-control" name="job[clientName][lastName]" id="inputLastName" value="<%=job.clientName.lastName%>">
+							<input type="text" class="form-control" name="job[clientName][lastName]" id="inputLastName" value="<%-job.clientName.lastName%>">
 						</div>
 						<div class="form-group col-md-6">
 							<label for="inputAltContact">Alt Contact</label>
-							<input type="text" class="form-control" name="job[altContact]" id="inputAltContact" value="<%= job.altContact %>">
+							<input type="text" class="form-control" name="job[altContact]" id="inputAltContact" value="<%- job.altContact %>">
 						</div>
 						<div class="form-group col-md-6">
 							<label for="inputBusinessName">Business Name</label>
-							<input type="text" class="form-control" name="job[businessName]" id="inputBusinessName" value="<%= job.businessName %>">
+							<input type="text" class="form-control" name="job[businessName]" id="inputBusinessName" value="<%- job.businessName %>">
 						</div>
 						<div class="form-group col-md-4">
 							<label for="inputPhone">Phone Number</label>
@@ -133,17 +133,17 @@
 					<div class="form-row">
 						<div class="form-group col-md-7">
 							<label for="inputAddress">Address</label>
-							<input type="text" class="form-control" name="job[address][street]" id="inputAddress" value="<%=job.address.street%>">
+							<input type="text" class="form-control" name="job[address][street]" id="inputAddress" value="<%-job.address.street%>">
 						</div>
 						<div class="form-group col-md-5">
 							<label for="inputAddress2">Address 2</label>
-							<input type="text" class="form-control" name="job[address][apartment]" id="inputAddress2" value="<%=job.address.apartment%>">
+							<input type="text" class="form-control" name="job[address][apartment]" id="inputAddress2" value="<%-job.address.apartment%>">
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="inputCity">City</label>
-							<input type="text" class="form-control" name="job[address][city]" id="inputCity" value="<%=job.address.city%>">
+							<input type="text" class="form-control" name="job[address][city]" id="inputCity" value="<%-job.address.city%>">
 						</div>
 						<div class="form-group col-md-3">
 							<label for="inputProvince">Province</label>
@@ -165,7 +165,7 @@
 						</div>
 						<div class="form-group col-md-3">
 							<label for="inputPostal">Postal Code</label>
-							<input type="text" class="form-control" name="job[address][postal]" id="inputPostal" value="<%=job.address.postal%>">
+							<input type="text" class="form-control" name="job[address][postal]" id="inputPostal" value="<%-job.address.postal%>">
 						</div>
 					</div>
 				</fieldset>
@@ -180,29 +180,29 @@
 						<div class="form-row">
 							<div class="form-group col-md-4">
 								<label for="inputInsuranceCompany">Insurance Company</label>
-								<input type="text" class="form-control" name="job[insComp]" id="inputInsuranceCompany" value="<%=job.insComp%>">
+								<input type="text" class="form-control" name="job[insComp]" id="inputInsuranceCompany" value="<%-job.insComp%>">
 							</div>
 							<div class="form-group col-md-4">
 								<label for="inputInsClaimNum">Claim Number</label>
-								<input type="text" class="form-control" name="job[claimNum]" id="inputInsClaimNum" value="<%=job.claimNum%>">
+								<input type="text" class="form-control" name="job[claimNum]" id="inputInsClaimNum" value="<%-job.claimNum%>">
 							</div>
 							<div class="form-group col-md-4">
 								<label for="inputInsPolNum">Policy Number</label>
-								<input type="text" class="form-control" name="job[policyNum]" id="inputInsPolNum" value="<%=job.policyNum%>">
+								<input type="text" class="form-control" name="job[policyNum]" id="inputInsPolNum" value="<%-job.policyNum%>">
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-4">
 								<label for="inputAdjustingCompany">Adjusting Company</label>
-								<input type="text" class="form-control" name="job[adjComp]" id="inputAdjustingCompany" value="<%=job.adjComp%>">
+								<input type="text" class="form-control" name="job[adjComp]" id="inputAdjustingCompany" value="<%-job.adjComp%>">
 							</div>
 							<div class="form-group col-md-4">
 								<label for="inputAdjName">Adjuster</label>
-								<input type="text" class="form-control" name="job[adjuster]" id="inputAdjName" value="<%=job.adjuster%>">
+								<input type="text" class="form-control" name="job[adjuster]" id="inputAdjName" value="<%-job.adjuster%>">
 							</div>
 							<div class="form-group col-md-4">
 								<label for="inputAdjClaimNum">File Number</label>
-								<input type="text" class="form-control" name="job[fileNum]" id="inputAdjClaimNum" value="<%=job.fileNum%>">
+								<input type="text" class="form-control" name="job[fileNum]" id="inputAdjClaimNum" value="<%-job.fileNum%>">
 							</div>
 						</div>
 						<div class="form-row">
@@ -224,11 +224,11 @@
 							</div>
 							<div class="form-group col-md-3">
 								<label for="inputDmgType">Damage Type</label>
-								<input type="text" class="form-control" name="job[dmgType]" id="inputDmgType" value="<%= job.dmgType %>">
+								<input type="text" class="form-control" name="job[dmgType]" id="inputDmgType" value="<%- job.dmgType %>">
 							</div>
 							<div class="form-group col-md-3">
 								<label for="inputFolder">Folder</label>
-								<input type="text" class="form-control" name="job[folder]" id="inputFolder" value="<%= job.folder %>">
+								<input type="text" class="form-control" name="job[folder]" id="inputFolder" value="<%- job.folder %>">
 							</div>
 						</div>
 					</div>

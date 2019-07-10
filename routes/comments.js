@@ -29,8 +29,8 @@ router.put("/:comment_id", middleware.checkCommentOwnership,
 		.not().isEmpty()
 		.withMessage("Comment is empty")
 		.isLength({
-			max: 400
-		}).withMessage("Comment is too long - 400 characters max"),
+			max: 800
+		}).withMessage("Comment is too long - 800 characters max"),
 	], updateComment);
 router.delete("/:comment_id", middleware.checkCommentOwnership, deleteComment);
 

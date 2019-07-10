@@ -8,7 +8,7 @@
                     <h3 class="headtitle">
                         <ol class="breadcrumb bg-transparent headtitle">
                             <li class="breadcrumb-item"><a class="text-dark" href="/jobs/"><strong>Jobs</strong></a></li>
-                            <li class="breadcrumb-item"><a class="text-dark" href="/jobs/<%=job._id%>"><strong><%= job.jobId %> - <%= job.titleName %></strong></a></li>
+                            <li class="breadcrumb-item"><a class="text-dark" href="/jobs/<%=job._id%>"><strong><%= job.jobId %> - <%- job.titleName %></strong></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Edit Comment</li>
                         </ol>
                     </h3>
@@ -50,7 +50,7 @@
                 <div class="card-header border-light">
                     <div class="form-group">
                         <label for="inputName"><strong>Edit Comment</strong></label>
-                        <textarea class="form-control " type="text" name="comment[text]" id="inputName"placeholder=""><%= comment.text %></textarea>
+                        <textarea class="form-control " type="text" name="comment[text]" id="inputName"placeholder=""><%- comment.text %></textarea>
                     </div>
                 </div>
             </div>

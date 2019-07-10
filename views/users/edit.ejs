@@ -29,7 +29,7 @@
 							</div>
 							<div class="modal-body">
 								<p>Deleting is permanent and cannot be undone.</p>
-								Are you sure you want to delete <strong><%= user.username %></strong>?
+								Are you sure you want to delete <strong><%- user.username %></strong>?
 
 							</div>
 							<div class="modal-footer justify-content-between bg-light">
@@ -58,7 +58,7 @@
         			<div class="form-row">
         			    <div class="form-group col-md-6">
         				    <label for="inputName">Username</label>
-        				    <input type="text" class="form-control" name="user[username]" id="inputUsername" value="<%=user.username%>">
+        				    <input type="text" class="form-control" name="user[username]" id="inputUsername" value="<%-user.username%>">
         				</div>
 						<% if(currentUser.isAdmin && (currentUser._id.toString() != user._id.toString())){ %>
 	        				<div class="col-6 col-sm-4 col-md-3 mx-auto">
@@ -100,11 +100,11 @@
         			<div class="form-row">
         				<div class="form-group col-md-6">
         				    <label for="inputFirstName">First Name</label>
-        				    <input type="text" class="form-control" name="user[firstName]" id="inputFirstName" value="<%=user.firstName%>">
+        				    <input type="text" class="form-control" name="user[firstName]" id="inputFirstName" value="<%-user.firstName%>">
         				</div>
         				<div class="form-group col-md-6">
         				    <label for="inputLastName">Last Name</label>
-        				    <input type="text" class="form-control" name="user[lastName]" id="inputLastName" value="<%=user.lastName%>">
+        				    <input type="text" class="form-control" name="user[lastName]" id="inputLastName" value="<%-user.lastName%>">
         				</div>
         			</div>
         			<div class="form-row">
@@ -118,7 +118,7 @@
         				</div>
         				<div class="form-group col-md-4">
         				    <label for="inputTitle">Title</label>
-        				    <input type="text" class="form-control" name="user[title]" id="inputTitle" value="<%=user.title%>">
+        				    <input type="text" class="form-control" name="user[title]" id="inputTitle" value="<%-user.title%>">
         				</div>
         			</div>
         			<div class="form-row">
