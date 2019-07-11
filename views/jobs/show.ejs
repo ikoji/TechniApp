@@ -76,14 +76,10 @@
 					<div class="col-lg-8 p-0">
 						<table class="table table-borderless m-0">
 							<tbody>
+								<% if(job.clientName.lastName || job.clientName.firstName){ %>
 								<tr class="d-flex">
 									<th scope="row" class="col-5 col-md-3 text-right">Name</td>
 									<td><%-job.fullName%></td>
-								</tr>
-								<% if(job.altContact){ %>
-								<tr class="d-flex">
-									<th scope="row" class="col-5 col-md-3 text-right">Alt Contact</td>
-									<td><%-job.altContact%></td>
 								</tr>
 								<% } %>
 								<% if(job.businessName){ %>
@@ -96,6 +92,12 @@
 									<th scope="row" class="col-5 col-md-3 text-right">Address</td>
 									<td><%-job.fullAddress%></td>
 								</tr>
+								<% if(job.altContact){ %>
+								<tr class="d-flex">
+									<th scope="row" class="col-5 col-md-3 text-right">Alt Contact</td>
+									<td><%-job.altContact%></td>
+								</tr>
+								<% } %>
 								<tr class="d-flex">
 									<th scope="row" class="col-5 col-md-3 text-right">Phone Number</td>
 									<td><%=job.phone%></td>
