@@ -15,7 +15,14 @@ router.post("/", middleware.isLoggedIn,
 				.not().isEmpty()
 				.withMessage("Job ID required")
 				.isNumeric().withMessage("Job ID can only have numeric characters")
-				.isLength({min:6, max:6}).withMessage("Job ID has to be 6 characters long"),
+				.isLength({min:6, max:6}).withMessage("Job ID has to be 6 characters long")
+				.custom(value => {
+					return Job.findOne({"jobId":value}).then(job => {
+						if(job) {
+							return Promise.reject('Job ID already exists');
+						}
+					});
+				}),
 			check('status')
 				.not().isEmpty()
 				.withMessage("Job Status required")
