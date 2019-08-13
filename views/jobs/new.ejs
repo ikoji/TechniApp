@@ -66,18 +66,6 @@
 						<label for="inputBusinessName">Business Name</label>
 						<input type="text" class="form-control" name="businessName" id="inputBusinessName" placeholder="Technicon Industries" value="<%- newJob.businessName %>">
 					</div>
-					<div class="form-group col-md-4">
-						<label for="inputPhone">Phone Number</label>
-						<input type="text" class="form-control" name="phone" id="inputPhone" placeholder="(123) 456-7890" value="<%= newJob.phone %>">
-					</div>
-					<div class="form-group col-md-4">
-						<label for="inputAltPhone">Alt Phone Number</label>
-						<input type="text" class="form-control" name="altPhone" id="inputAltPhone" placeholder="(123) 456-7890" value="<%= newJob.altPhone %>">
-					</div>
-					<div class="form-group col-md-4">
-						<label for="inputEmail">Email</label>
-						<input type="email" class="form-control" name="email" id="inputEmail" placeholder="janedoe@email.ca" value="<%= newJob.email %>">
-					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-8">
@@ -115,6 +103,20 @@
 					<div class="form-group col-md-3">
 						<label for="inputPostal">Postal Code</label>
 						<input type="text" class="form-control" name="postal" id="inputPostal" placeholder="V8X X0X" value="<%- newJob.address.postal %>">
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-4">
+						<label for="inputPhone">Phone Number</label>
+						<input type="text" class="form-control" name="phone" id="inputPhone" placeholder="(123) 456-7890" value="<%= newJob.phone %>">
+					</div>
+					<div class="form-group col-md-4">
+						<label for="inputAltPhone">Alt Phone Number</label>
+						<input type="text" class="form-control" name="altPhone" id="inputAltPhone" placeholder="(123) 456-7890" value="<%= newJob.altPhone %>">
+					</div>
+					<div class="form-group col-md-4">
+						<label for="inputEmail">Email</label>
+						<input type="email" class="form-control" name="email" id="inputEmail" placeholder="janedoe@email.ca" value="<%= newJob.email %>">
 					</div>
 				</div>
 			</fieldset>

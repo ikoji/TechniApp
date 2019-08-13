@@ -117,18 +117,6 @@
 							<label for="inputBusinessName">Business Name</label>
 							<input type="text" class="form-control" name="job[businessName]" id="inputBusinessName" value="<%- job.businessName %>">
 						</div>
-						<div class="form-group col-md-4">
-							<label for="inputPhone">Phone Number</label>
-							<input type="tel" class="form-control" name="job[phone]" id="inputPhone" value="<%=job.phone%>">
-						</div>
-						<div class="form-group col-md-4">
-							<label for="inputAltPhone">Alt Phone Number</label>
-							<input type="text" class="form-control" name="job[altPhone]" id="inputAltPhone" value="<%= job.altPhone %>">
-						</div>
-						<div class="form-group col-md-4">
-							<label for="inputEmail">Email</label>
-							<input type="email" class="form-control" name="job[email]" id="inputEmail" value="<%=job.email%>">
-						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-7">
@@ -166,6 +154,20 @@
 						<div class="form-group col-md-3">
 							<label for="inputPostal">Postal Code</label>
 							<input type="text" class="form-control" name="job[address][postal]" id="inputPostal" value="<%-job.address.postal%>">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-4">
+							<label for="inputPhone">Phone Number</label>
+							<input type="tel" class="form-control" name="job[phone]" id="inputPhone" value="<%=job.phone%>">
+						</div>
+						<div class="form-group col-md-4">
+							<label for="inputAltPhone">Alt Phone Number</label>
+							<input type="text" class="form-control" name="job[altPhone]" id="inputAltPhone" value="<%= job.altPhone %>">
+						</div>
+						<div class="form-group col-md-4">
+							<label for="inputEmail">Email</label>
+							<input type="email" class="form-control" name="job[email]" id="inputEmail" value="<%=job.email%>">
 						</div>
 					</div>
 				</fieldset>

@@ -92,16 +92,16 @@
 									<th scope="row" class="col-5 col-md-3 text-right">Address</td>
 									<td><%-job.fullAddress%></td>
 								</tr>
+								<tr class="d-flex">
+									<th scope="row" class="col-5 col-md-3 text-right">Phone Number</td>
+									<td><%=job.phone%></td>
+								</tr>
 								<% if(job.altContact){ %>
 								<tr class="d-flex">
 									<th scope="row" class="col-5 col-md-3 text-right">Alt Contact</td>
 									<td><%-job.altContact%></td>
 								</tr>
 								<% } %>
-								<tr class="d-flex">
-									<th scope="row" class="col-5 col-md-3 text-right">Phone Number</td>
-									<td><%=job.phone%></td>
-								</tr>
 								<% if(job.altPhone){ %>
 								<tr class="d-flex">
 									<th scope="row" class="col-5 col-md-3 text-right">Alt Phone Number</td>
