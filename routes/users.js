@@ -1,10 +1,17 @@
-const express	= require("express"),
-	router		= express.Router(),
-	User		= require("../models/user"),
-	middleware	= require("../middleware");
-const { check, validationResult } = require('express-validator/check');
-const { sanitize } = require('express-validator/filter');
-const { parsePhoneNumberFromString } = require('libphonenumber-js');
+const express = require("express"),
+	router = express.Router(),
+	User = require("../models/user"),
+	middleware = require("../middleware");
+const {
+	check,
+	validationResult
+} = require('express-validator/check');
+const {
+	sanitize
+} = require('express-validator/filter');
+const {
+	parsePhoneNumberFromString
+} = require('libphonenumber-js');
 
 router.get("/", middleware.isLoggedIn, allUsers);
 router.get("/new", middleware.isAdmin, newUserRoute);
@@ -34,7 +41,7 @@ router.post("/",
 				.trim().escape()
 				.isMobilePhone('en-CA').withMessage("Invalid phone number")
 				.customSanitizer(value => {
-					var phone = parsePhoneNumberFromString(value, 'CA');
+					const phone = parsePhoneNumberFromString(value, 'CA');
 					if(phone){
 						return phone.formatNational();
 					}
@@ -82,7 +89,7 @@ router.put("/:id",
 				.trim().escape()
 				.isMobilePhone('en-CA').withMessage("Invalid phone number")
 				.customSanitizer(value => {
-					var phone = parsePhoneNumberFromString(value, 'CA');
+					const phone = parsePhoneNumberFromString(value, 'CA');
 					if(phone){
 						return phone.formatNational();
 					}
@@ -109,51 +116,53 @@ router.delete("/:id", middleware.isAdmin, deleteUser);
 module.exports = router;
 
 // INDEX ROUTE - show all Users
-function allUsers(req, res){
+function allUsers(req, res) {
 	// Get all Users from DB
-	User.find({}, function(err, allUsers){
-		if(err){
+	User.find({}, function (err, allUsers) {
+		if (err) {
 			console.log(err);
 		} else {
-			res.render("users/index", {users:allUsers});
+			res.render("users/index", {
+				users: allUsers
+			});
 		}
 	});
 }
 
 // NEW ROUTE - show form to create new user
 function newUserRoute(req, res) {
-   res.render("users/new");
+	res.render("users/new");
 }
 
 // CREATE ROUTE - add new user to Database
-function createUser(req, res){
+function createUser(req, res) {
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
-		errors.array().forEach(function(err){
+		errors.array().forEach(function (err) {
 			req.flash("error", err.msg);
 		});
 		res.redirect("/users/new");
 	} else {
 		// Get data from form and add to users array
-		var username	= req.body.username,
-			firstName	= req.body.firstName,
-			lastName	= req.body.lastName,
-			email		= req.body.email,
-			phone		= req.body.phone,
-			title		= req.body.title,
-			isAdmin		= req.body.isAdmin,
-			newUser={
-						username: username,
-						firstName: firstName,
-						lastName: lastName,
-						email: email,
-						phone: phone,
-						title: title,
-						isAdmin: isAdmin
-					};
+		const username = req.body.username,
+			firstName = req.body.firstName,
+			lastName = req.body.lastName,
+			email = req.body.email,
+			phone = req.body.phone,
+			title = req.body.title,
+			isAdmin = req.body.isAdmin,
+			newUser = {
+				username: username,
+				firstName: firstName,
+				lastName: lastName,
+				email: email,
+				phone: phone,
+				title: title,
+				isAdmin: isAdmin
+			};
 		// Create new user and send to DB
-		User.register(newUser, req.body.password, function(err, user){
-			if(err){
+		User.register(newUser, req.body.password, function (err, user) {
+			if (err) {
 				console.log(err);
 				req.flash("error", err.message);
 				res.redirect("/users");
@@ -168,49 +177,51 @@ function createUser(req, res){
 // SHOW ROUTE - shows more info about one user - not currently available
 function showUser(req, res) {
 	// find the user with provided id
-	User.findById(req.params.id, function(err, foundUser){
-	   if(err){
+	User.findById(req.params.id, function (err, foundUser) {
+		if (err) {
 			res.redirect("/users");
-	   } else {
+		} else {
 			console.log(foundUser);
 			res.redirect("/users");
 			// render show template with that user
 			// res.render("users/show", {user: foundUser});
-	   }
+		}
 	});
 }
 
 // EDIT USER ROUTE
 function editUser(req, res) {
-	User.findById(req.params.id, function(err, foundUser){
-	   if(err){
-		   console.log(err);
-	   } else {
-		res.render("users/edit", {user:foundUser});
-	   }
+	User.findById(req.params.id, function (err, foundUser) {
+		if (err) {
+			console.log(err);
+		} else {
+			res.render("users/edit", {
+				user: foundUser
+			});
+		}
 	});
 }
 
 // UPDATE USER ROUTE
-function updateUser(req, res){
+function updateUser(req, res) {
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
-		errors.array().forEach(function(err){
+		errors.array().forEach(function (err) {
 			req.flash("error", err.msg);
 		});
-		res.redirect("/users/"+req.params.id+"/edit");
+		res.redirect("/users/" + req.params.id + "/edit");
 	} else {
-		User.findByIdAndUpdate(req.params.id, req.body.user, function(err, user){
-			if(err){
+		User.findByIdAndUpdate(req.params.id, req.body.user, function (err, user) {
+			if (err) {
 				console.log(err);
 				res.redirect("/users");
 			} else {
-				if(req.body.password !== ""){
-					if(req.body.password !== req.body.confirmPassword) {
-						req.flash("error","Passwords do not match");
-						res.redirect("/users/"+req.params.id+"/edit");
+				if (req.body.password !== "") {
+					if (req.body.password !== req.body.confirmPassword) {
+						req.flash("error", "Passwords do not match");
+						res.redirect("/users/" + req.params.id + "/edit");
 					} else {
-						user.setPassword(req.body.password, function(err,user){
+						user.setPassword(req.body.password, function (err, user) {
 							if (err) {
 								req.flash("error", "Password could not be saved. Please try again!");
 								res.redirect("/users");
@@ -231,9 +242,9 @@ function updateUser(req, res){
 }
 
 // DESTROY USER ROUTE
-function deleteUser(req, res){
-	User.findByIdAndDelete(req.params.id, function(err){
-		if(err) {
+function deleteUser(req, res) {
+	User.findByIdAndDelete(req.params.id, function (err) {
+		if (err) {
 			res.redirect("/users");
 		} else {
 			res.redirect("/users");

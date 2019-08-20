@@ -1,9 +1,15 @@
-var express = require("express"),
-	router  = express.Router(),
-	Job     = require("../models/job"),
+const express = require("express"),
+	router = express.Router(),
+	Job = require("../models/job"),
 	middleware = require("../middleware");
-const { check, oneOf, validationResult } = require('express-validator/check');
-const { parsePhoneNumberFromString } = require('libphonenumber-js');
+const {
+	check,
+	oneOf,
+	validationResult
+} = require("express-validator/check");
+const {
+	parsePhoneNumberFromString
+} = require("libphonenumber-js");
 
 router.get("/", middleware.isLoggedIn, allJobs);
 router.get("/new", middleware.isLoggedIn, newJobRoute);
@@ -47,7 +53,7 @@ router.post("/", middleware.isLoggedIn,
 				.optional({checkFalsy: true})
 				.isMobilePhone('en-CA').withMessage("Invalid phone number")
 				.customSanitizer(value => {
-					var phone = parsePhoneNumberFromString(value, 'CA');
+					const phone = parsePhoneNumberFromString(value, 'CA');
 					if(phone){
 						return phone.formatNational();
 					}
@@ -56,7 +62,7 @@ router.post("/", middleware.isLoggedIn,
 				.optional({checkFalsy: true})
 				.isMobilePhone('en-CA').withMessage("Invalid alt phone number")
 				.customSanitizer(value => {
-					var phone = parsePhoneNumberFromString(value, 'CA');
+					const phone = parsePhoneNumberFromString(value, 'CA');
 					if(phone){
 						return phone.formatNational();
 					}
@@ -144,7 +150,7 @@ router.put("/:id", middleware.isLoggedIn,
 				.optional({checkFalsy: true})
 				.isMobilePhone('en-CA').withMessage("Invalid phone number")
 				.customSanitizer(value => {
-					var phone = parsePhoneNumberFromString(value, 'CA');
+					const phone = parsePhoneNumberFromString(value, 'CA');
 					if(phone){
 						return phone.formatNational();
 					}
@@ -153,7 +159,7 @@ router.put("/:id", middleware.isLoggedIn,
 				.optional({checkFalsy: true})
 				.isMobilePhone('en-CA').withMessage("Invalid alt phone number")
 				.customSanitizer(value => {
-					var phone = parsePhoneNumberFromString(value, 'CA');
+					const phone = parsePhoneNumberFromString(value, 'CA');
 					if(phone){
 						return phone.formatNational();
 					}
@@ -211,130 +217,133 @@ router.delete("/:id", middleware.isLoggedIn, deleteJob);
 module.exports = router;
 
 // INDEX ROUTE - show all jobs
-function allJobs(req, res){
+function allJobs(req, res) {
 	// Get all jobs from DB
-	Job.find({}, function(err, allJobs){
-		if(err){
+	Job.find({}, function (err, allJobs) {
+		if (err) {
 			console.log(err);
 		} else {
-			res.render("jobs/index", {jobs:allJobs});
+			res.render("jobs/index", {
+				jobs: allJobs
+			});
 		}
 	});
 }
 
 // NEW ROUTE - show form to create new job
 function newJobRoute(req, res) {
-	var newJob	=	{
-			jobId: null,
-			status: null,
-			clientName: 
-				{
-					firstName: null,
-					lastName: null
-				},
-			altContact: null,
-			businessName: null,
-			phone: null,
-			altPhone: null,
-			email: null,
-			address:
-				{
-					street: null,
-					apartment: null,
-					city: null,
-					province: null,
-					postal: null
-				},
-			insComp: null,
-			policyNum: null,
-			claimNum: null,
-			adjComp: null,
-			adjuster: null,
-			fileNum: null,
-			dateOfLoss: null,
-			dmgType: null,
-			folder: null,
-			deductible: null,
-			createdAt: null,
-			modifiedAt: null
-			};
-	res.render("jobs/new", {newJob:newJob});
+	const newJob = {
+		jobId: null,
+		status: null,
+		clientName: {
+			firstName: null,
+			lastName: null
+		},
+		altContact: null,
+		businessName: null,
+		phone: null,
+		altPhone: null,
+		email: null,
+		address: {
+			street: null,
+			apartment: null,
+			city: null,
+			province: null,
+			postal: null
+		},
+		insComp: null,
+		policyNum: null,
+		claimNum: null,
+		adjComp: null,
+		adjuster: null,
+		fileNum: null,
+		dateOfLoss: null,
+		dmgType: null,
+		folder: null,
+		deductible: null,
+		createdAt: null,
+		modifiedAt: null
+	};
+	res.render("jobs/new", {
+		newJob: newJob
+	});
 }
 
 // CREATE ROUTE - add new job to Database
-function createJob(req, res){
+function createJob(req, res) {
 	const errors = validationResult(req);
 	// Get data from form and add to jobs array
-	var jobId           = req.body.jobId,
-		status			= req.body.status,
-		firstName		= req.body.firstName,
-		lastName 		= req.body.lastName,
-		altContact		= req.body.altContact,
-		businessName	= req.body.businessName,
-		phone           = req.body.phone,
-		altPhone		= req.body.altPhone,
-		email			= req.body.email,
-		street          = req.body.street,
-		apartment       = req.body.apartment,
-		city            = req.body.city,
-		province        = req.body.province,
-		postal          = req.body.postal,
-		insComp         = req.body.insComp,
-		policyNum       = req.body.policyNum,
-		claimNum        = req.body.claimNum,
-		adjComp         = req.body.adjComp,
-		adjuster        = req.body.adjuster,
-		fileNum         = req.body.fileNum,
-		dateOfLoss      = req.body.dateOfLoss,
-		dmgType			= req.body.dmgType,
-		folder			= req.body.folder,
-		deductible		= req.body.deductible,
-		createdAt		= req.body.createdAt,
-		modifiedAt		= req.body.modifiedAt,
-		newJob	=	{
-					jobId: jobId,
-					status: status,
-					clientName: 
-						{
-							firstName: firstName,
-							lastName: lastName
-						},
-					altContact: altContact,
-					businessName: businessName,
-					phone: phone,
-					altPhone: altPhone,
-					email: email,
-					address:
-						{
-							street: street,
-							apartment: apartment,
-							city: city,
-							province: province,
-							postal: postal
-						},
-					insComp: insComp,
-					policyNum: policyNum,
-					claimNum: claimNum,
-					adjComp: adjComp,
-					adjuster: adjuster,
-					fileNum: fileNum,
-					dateOfLoss: dateOfLoss,
-					dmgType: dmgType,
-					folder: folder,
-					deductible: deductible,
-					createdAt: createdAt,
-					modifiedAt: modifiedAt
-					};
+	const jobId = req.body.jobId,
+		status = req.body.status,
+		firstName = req.body.firstName,
+		lastName = req.body.lastName,
+		altContact = req.body.altContact,
+		businessName = req.body.businessName,
+		phone = req.body.phone,
+		altPhone = req.body.altPhone,
+		email = req.body.email,
+		street = req.body.street,
+		apartment = req.body.apartment,
+		city = req.body.city,
+		province = req.body.province,
+		postal = req.body.postal,
+		insComp = req.body.insComp,
+		policyNum = req.body.policyNum,
+		claimNum = req.body.claimNum,
+		adjComp = req.body.adjComp,
+		adjuster = req.body.adjuster,
+		fileNum = req.body.fileNum,
+		dateOfLoss = req.body.dateOfLoss,
+		dmgType = req.body.dmgType,
+		folder = req.body.folder,
+		deductible = req.body.deductible,
+		createdAt = req.body.createdAt,
+		modifiedAt = req.body.modifiedAt,
+		newJob = {
+			jobId: jobId,
+			status: status,
+			clientName: {
+				firstName: firstName,
+				lastName: lastName
+			},
+			altContact: altContact,
+			businessName: businessName,
+			phone: phone,
+			altPhone: altPhone,
+			email: email,
+			address: {
+				street: street,
+				apartment: apartment,
+				city: city,
+				province: province,
+				postal: postal
+			},
+			insComp: insComp,
+			policyNum: policyNum,
+			claimNum: claimNum,
+			adjComp: adjComp,
+			adjuster: adjuster,
+			fileNum: fileNum,
+			dateOfLoss: dateOfLoss,
+			dmgType: dmgType,
+			folder: folder,
+			deductible: deductible,
+			createdAt: createdAt,
+			modifiedAt: modifiedAt
+		};
 	if (!errors.isEmpty()) {
-		var error=[];
-		errors.array().forEach(function(err){
+		let error = [];
+		errors.array().forEach(function (err) {
 			error.push(err.msg);
 		});
-		res.render("jobs/new", { error: error, newJob:newJob});
+		res.render("jobs/new", {
+			error: error,
+			newJob: newJob
+		});
 	} else {
 		// Create new job and send to DB
-		Job.create(newJob, function(err,newlyCreated){
-			if(err){
+		Job.create(newJob, function (err, newlyCreated) {
+			if (err) {
 				console.log(err);
 			} else {
 				// redirect to jobs page
@@ -347,39 +356,43 @@ function createJob(req, res){
 // SHOW ROUTE - shows more info about one job
 function showJob(req, res) {
 	// find the job with provided id
-	Job.findById(req.params.id).populate("comments").exec(function(err,foundJob){
-	   if(err){
+	Job.findById(req.params.id).populate("comments").exec(function (err, foundJob) {
+		if (err) {
 			res.redirect("/jobs");
-	   } else {
+		} else {
 			console.log(foundJob);
 			// render show template with that job
-			res.render("jobs/show", {job: foundJob});
-	   }
+			res.render("jobs/show", {
+				job: foundJob
+			});
+		}
 	});
 }
 
 // EDIT JOB ROUTE
 function editJob(req, res) {
-	Job.findById(req.params.id, function(err, foundJob){
-	   if(err){
-		   console.log(err);
-	   } else {
-		res.render("jobs/edit", {job:foundJob});
-	   }
+	Job.findById(req.params.id, function (err, foundJob) {
+		if (err) {
+			console.log(err);
+		} else {
+			res.render("jobs/edit", {
+				job: foundJob
+			});
+		}
 	});
 }
 
 // UPDATE JOB ROUTE
-function updateJob(req, res){
+function updateJob(req, res) {
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
-		errors.array().forEach(function(err){
+		errors.array().forEach(function (err) {
 			req.flash("error", err.msg);
 		});
-		res.redirect("/jobs/"+req.params.id+"/edit");
+		res.redirect("/jobs/" + req.params.id + "/edit");
 	} else {
-		Job.findByIdAndUpdate(req.params.id, req.body.job, function(err, updatedJob){
-			if(err){
+		Job.findByIdAndUpdate(req.params.id, req.body.job, function (err, updatedJob) {
+			if (err) {
 				console.log(err);
 				res.redirect("/jobs");
 			} else {
@@ -390,9 +403,9 @@ function updateJob(req, res){
 }
 
 // DESTROY JOB ROUTE
-function deleteJob(req, res){
-	Job.findByIdAndDelete(req.params.id, function(err){
-		if(err) {
+function deleteJob(req, res) {
+	Job.findByIdAndDelete(req.params.id, function (err) {
+		if (err) {
 			res.redirect("/jobs");
 		} else {
 			res.redirect("/jobs");

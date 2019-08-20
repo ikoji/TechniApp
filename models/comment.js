@@ -1,9 +1,15 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-var commentSchema = new mongoose.Schema({
+const commentSchema = new mongoose.Schema({
     text: String,
-    createdAt: { type: Date, default: Date.now },
-    modifiedAt: { type: Date, default: Date.now },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    modifiedAt: {
+        type: Date,
+        default: Date.now
+    },
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,

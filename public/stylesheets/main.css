@@ -7,26 +7,27 @@
 	color: #dc3545;
 }
 
-.page-item.active .page-link{
+.page-item.active .page-link {
 	background-color: #dc3545;
 	border-color: #dc3545;
 }
 
-.radioFalse:checked ~ .radioFalse::before {
+.radioFalse:checked~.radioFalse::before {
 	background-color: #dc3545 !important;
 	border-color: #dc3545 !important;
 }
 
-.radioTrue:checked ~ .radioTrue::before {
+.radioTrue:checked~.radioTrue::before {
 	background-color: #28a745 !important;
 	border-color: #28a745 !important;
 }
 
-body, html {
+body,
+html {
 	height: 100%;
 }
 
-.bg{
+.bg {
 	background-image: url("../img/cascadiaforest.jpeg");
 	background-attachment: fixed;
 	background-position: center;
@@ -35,9 +36,9 @@ body, html {
 }
 
 .maincardbg {
-	background-color: rgba(250,250,250,0.5);
+	background-color: rgba(250, 250, 250, 0.5);
 }
 
 .btn-outline-success {
-	background-color: rgba(250,250,250,0.2);
+	background-color: rgba(250, 250, 250, 0.2);
 }

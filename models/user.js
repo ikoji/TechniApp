@@ -1,7 +1,7 @@
-var mongoose = require("mongoose"),
+const mongoose = require("mongoose"),
 	passportLocalMongoose = require("passport-local-mongoose");
 
-var UserSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
 	username: {
 		type: String,
 		unique: true,
@@ -18,13 +18,16 @@ var UserSchema = new mongoose.Schema({
 	email: String,
 	phone: String,
 	title: String,
-	isAdmin: {type: Boolean, default: false}
+	isAdmin: {
+		type: Boolean,
+		default: false
+	}
 });
 
 UserSchema.plugin(passportLocalMongoose);
 
-UserSchema.virtual('fullName').get(function (){
-    return this.firstName + " " + this.lastName;
+UserSchema.virtual('fullName').get(function () {
+	return this.firstName + " " + this.lastName;
 });
 
 module.exports = mongoose.model("User", UserSchema);
