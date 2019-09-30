@@ -90,10 +90,16 @@
 								<% } %>
 								<tr class="d-flex">
 									<th scope="row" class="col-5 col-md-3 text-right">Address</td>
-									<td><%-job.fullAddress%></td>
+									<td>
+										<% if(job.address.street.length > 1) { %>
+											<%- job.fullAddress %>
+										<% } else { %>
+											<%- job.address.city %> <%- job.address.province %> <%- job.address.postal %>
+										<% } %>
+									</td>
 								</tr>
 								<tr class="d-flex">
-									<th scope="row" class="col-5 col-md-3 text-right">Phone Number</td>
+									<th scope="row" class="col-5 col-md-3 text-right">Phone</td>
 									<td><%=job.phone%></td>
 								</tr>
 								<% if(job.altContact){ %>
