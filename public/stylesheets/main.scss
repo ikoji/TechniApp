@@ -1,0 +1,44 @@
+$techniconRed: #dc3545;
+
+.headtitle {
+	margin: 0px;
+	padding: 0px;
+}
+
+.page-link {
+	color: $techniconRed;
+}
+
+.page-item.active .page-link {
+	background-color: $techniconRed;
+	border-color: $techniconRed;
+}
+
+.radioFalse:checked~.radioFalse::before {
+	background-color: $techniconRed !important;
+	border-color: $techniconRed !important;
+}
+
+.radioTrue:checked~.radioTrue::before {
+	background-color: #28a745 !important;
+	border-color: #28a745 !important;
+}
+
+body{
+	html {
+		height: 100%;
+	}
+	background-image: url("../img/cascadiaforest.jpeg");
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.maincardbg {
+	background-color: rgba(250, 250, 250, 0.5);
+}
+
+.btn-outline-success {
+	background-color: rgba(250, 250, 250, 0.2);
+}

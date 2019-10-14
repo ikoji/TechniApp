@@ -1,44 +1,44 @@
 .headtitle {
-	margin: 0px;
-	padding: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 .page-link {
-	color: #dc3545;
+  color: #dc3545;
 }
 
 .page-item.active .page-link {
-	background-color: #dc3545;
-	border-color: #dc3545;
+  background-color: #dc3545;
+  border-color: #dc3545;
 }
 
-.radioFalse:checked~.radioFalse::before {
-	background-color: #dc3545 !important;
-	border-color: #dc3545 !important;
+.radioFalse:checked ~ .radioFalse::before {
+  background-color: #dc3545 !important;
+  border-color: #dc3545 !important;
 }
 
-.radioTrue:checked~.radioTrue::before {
-	background-color: #28a745 !important;
-	border-color: #28a745 !important;
+.radioTrue:checked ~ .radioTrue::before {
+  background-color: #28a745 !important;
+  border-color: #28a745 !important;
 }
 
-body,
-html {
-	height: 100%;
+body {
+  background-image: url("../img/cascadiaforest.jpeg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.bg {
-	background-image: url("../img/cascadiaforest.jpeg");
-	background-attachment: fixed;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
+body html {
+  height: 100%;
 }
 
 .maincardbg {
-	background-color: rgba(250, 250, 250, 0.5);
+  background-color: rgba(250, 250, 250, 0.5);
 }
 
 .btn-outline-success {
-	background-color: rgba(250, 250, 250, 0.2);
+  background-color: rgba(250, 250, 250, 0.2);
 }
+/*# sourceMappingURL=main.css.map */
