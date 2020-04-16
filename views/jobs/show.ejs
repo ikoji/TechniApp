@@ -102,6 +102,10 @@
 									<th scope="row" class="col-5 col-md-3 text-right">Phone</td>
 									<td><%=job.phone%></td>
 								</tr>
+								<tr class="d-flex">
+									<th scope="row" class="col-5 col-md-3 text-right">Email</td>
+									<td><%=job.email%></td>
+								</tr>
 								<% if(job.altContact){ %>
 								<tr class="d-flex">
 									<th scope="row" class="col-5 col-md-3 text-right">Alt Contact</td>
@@ -114,11 +118,6 @@
 									<td><%=job.altPhone%></td>
 								</tr>
 								<% } %>
-								<tr class="d-flex">
-									<th scope="row" class="col-5 col-md-3 text-right">Email</td>
-									<td><%=job.email%></td>
-								</tr>
-
 							</tbody>
 						</table>
 					</div>

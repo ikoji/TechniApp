@@ -23,7 +23,7 @@
 					<div class="form-row">
 						<div class="form-group col">
 							<label for="inputJobId"><strong>Job ID</strong></label>
-							<input class="form-control" type="text" name="jobId" id="inputJobId" placeholder="YYTXXX (Year + Town + Number)" value="<%= newJob.jobId %>">
+							<input autofocus class="form-control" type="text" name="jobId" id="inputJobId" placeholder="YYTXXX (Year + Town + Number)" value="<%= newJob.jobId %>">
 						</div>
 						<div class="form-group col">
 							<label for="inputStatus"><strong>Job Status</strong></label>
@@ -58,33 +58,28 @@
 						<label for="inputLastName">Last Name</label>
 						<input type="text" class="form-control" name="lastName" id="inputLastName" placeholder="Doe" value="<%- newJob.clientName.lastName %>">
 					</div>
-					<div class="form-group col-md-6">
-						<label for="inputAltContact">Alt Contact</label>
-						<input type="text" class="form-control" name="altContact" id="inputAltContact" placeholder="Alt Name" value="<%- newJob.altContact %>">
-					</div>
-					<div class="form-group col-md-6">
+					<div class="form-group col-md-12">
 						<label for="inputBusinessName">Business Name</label>
 						<input type="text" class="form-control" name="businessName" id="inputBusinessName" placeholder="Technicon Industries" value="<%- newJob.businessName %>">
 					</div>
 				</div>
 				<div class="form-row">
-					<div class="form-group col-md-8">
+					<div class="form-group col-md-4">
 						<label for="inputAddress">Address</label>
 						<input type="text" class="form-control" name="street" id="inputAddress" placeholder="1234 Main St" value="<%- newJob.address.street %>">
 					</div>
-					<div class="form-group col-md-4">
+					<!--<div class="form-group col-md-4">
 						<label for="inputAddress2">Address 2</label>
 						<input type="text" class="form-control" name="apartment" id="inputAddress2" placeholder="Apartment, floor" value="<%- newJob.address.apartment %>">
-					</div>
-				</div>
-				<div class="form-row">
-					<div class="form-group col-md-6">
+					</div>-->
+
+					<div class="form-group col-md-4">
 						<label for="inputCity">City</label>
 						<input type="text" class="form-control" name="city" id="inputCity" value="<%- newJob.address.city %>">
 					</div>
-					<div class="form-group col-md-3">
+					<div class="form-group col-md-2">
 						<label for="inputProvince">Province</label>
-						<select id="inputProvince" name="province" class="form-control">
+						<select tabindex="-1" id="inputProvince" name="province" class="form-control">
 							<option>Choose...</option>
 							<option>AB</option>
 							<option selected>BC</option>
@@ -100,7 +95,7 @@
 							<option>YT</option>
 						</select>
 					</div>
-					<div class="form-group col-md-3">
+					<div class="form-group col-md-2">
 						<label for="inputPostal">Postal Code</label>
 						<input type="text" class="form-control" name="postal" id="inputPostal" placeholder="V8X X0X" value="<%- newJob.address.postal %>">
 					</div>
@@ -111,12 +106,24 @@
 						<input type="text" class="form-control" name="phone" id="inputPhone" placeholder="(123) 456-7890" value="<%= newJob.phone %>">
 					</div>
 					<div class="form-group col-md-4">
-						<label for="inputAltPhone">Alt Phone Number</label>
-						<input type="text" class="form-control" name="altPhone" id="inputAltPhone" placeholder="(123) 456-7890" value="<%= newJob.altPhone %>">
+						<label for="inputPhoneExt">Extension</label>
+						<input disabled type="text" class="form-control" name="extension" id="inputPhoneExt" placeholder="" value="">
 					</div>
 					<div class="form-group col-md-4">
 						<label for="inputEmail">Email</label>
 						<input type="email" class="form-control" name="email" id="inputEmail" placeholder="janedoe@email.ca" value="<%= newJob.email %>">
+					</div>
+					<div class="form-group col-md-4">
+						<label for="inputAltContact">Alt Contact</label>
+						<input type="text" class="form-control" name="altContact" id="inputAltContact" placeholder="Alt Name" value="<%- newJob.altContact %>">
+					</div>
+					<div class="form-group col-md-4">
+						<label for="inputAltPhone">Alt Phone Number</label>
+						<input type="text" class="form-control" name="altPhone" id="inputAltPhone" placeholder="(123) 456-7890" value="<%= newJob.altPhone %>">
+					</div>
+					<div class="form-group col-md-4">
+						<label for="inputAltPhoneExt">Extension</label>
+						<input disabled type="text" class="form-control" name="altExtension" id="inputAltPhoneExt" placeholder="" value="">
 					</div>
 				</div>
 			</fieldset>
