@@ -232,45 +232,57 @@ function allJobs(req, res) {
 
 // NEW ROUTE - show form to create new job
 function newJobRoute(req, res) {
-	const newJob = {
-		jobId: null,
-		status: null,
-		clientName: {
-			firstName: null,
-			lastName: null
-		},
-		altContact: null,
-		businessName: null,
-		phone: null,
-		altPhone: null,
-		email: null,
-		address: {
-			street: null,
-			apartment: null,
-			city: null,
-			province: null,
-			postal: null
-		},
-		insComp: null,
-		policyNum: null,
-		claimNum: null,
-		adjComp: null,
-		adjuster: null,
-		fileNum: null,
-		dateOfLoss: null,
-		dmgType: null,
-		folder: null,
-		deductible: null,
-		createdAt: null,
-		modifiedAt: null
-	};
-	res.render("jobs/new", {
-		newJob: newJob
+
+	Job.find({}).sort({jobId: -1}).select('jobId').exec(function(err,job){
+		if (err) return console.log(err);
+		const jobIds = [];
+		job.forEach(job => jobIds.push(job.jobId.toString()));
+		const locals = [];
+		jobIds.forEach(jobids => locals.push(jobids.charAt(2)));
+		const uniqueLocals = [...new Set(locals)];
+		const maxJobIds = [];
+		uniqueLocals.forEach(unique => maxJobIds.push(Math.max(...jobIds.filter(jobIds => jobIds.charAt(2) == unique))+1));
+		const newJob = {
+			jobId: null,		
+			status: null,
+			clientName: {
+				firstName: null,
+				lastName: null
+			},
+			altContact: null,
+			businessName: null,
+			phone: null,
+			altPhone: null,
+			email: null,
+			address: {
+				street: null,
+				apartment: null,
+				city: null,
+				province: null,
+				postal: null
+			},
+			insComp: null,
+			policyNum: null,
+			claimNum: null,
+			adjComp: null,
+			adjuster: null,
+			fileNum: null,
+			dateOfLoss: null,
+			dmgType: null,
+			folder: null,
+			deductible: null,
+			createdAt: null,
+			modifiedAt: null
+		};
+		res.render("jobs/new", {
+			newJob: newJob,
+			maxJobIds: maxJobIds
+		});
 	});
 }
 
 // CREATE ROUTE - add new job to Database
-function createJob(req, res) {
+async function createJob(req, res) {
 	const errors = validationResult(req);
 	// Get data from form and add to jobs array
 	const jobId = req.body.jobId,
@@ -336,22 +348,38 @@ function createJob(req, res) {
 		errors.array().forEach(function (err) {
 			error.push(err.msg);
 		});
+
+		const job = await Job.find({}).sort({jobId: -1}).select('jobId');
+			
+		const jobIds = [];
+		job.forEach(job => jobIds.push(job.jobId.toString()));
+		const locals = [];
+		jobIds.forEach(jobids => locals.push(jobids.charAt(2)));
+		const uniqueLocals = [...new Set(locals)];
+		const maxJobIds = [];
+		uniqueLocals.forEach(unique => maxJobIds.push(Math.max(...jobIds.filter(jobIds => jobIds.charAt(2) == unique))+1));
+		
 		res.render("jobs/new", {
 			error: error,
-			newJob: newJob
+			newJob: newJob,
+			maxJobIds: maxJobIds
 		});
 	} else {
 		// Create new job and send to DB
-		Job.create(newJob, function (err, newlyCreated) {
-			if (err) {
-				console.log(err);
-			} else {
-				// redirect to jobs page
-				res.redirect("/jobs");
-			}
-		});
+		try {
+			await Job.create(newJob);
+
+			// redirect to jobs page
+			res.redirect("/jobs");
+		}
+		catch (err){
+			console.error(err);
+		}
 	}
 }
+
+
+
 
 // SHOW ROUTE - shows more info about one job
 function showJob(req, res) {

@@ -17,13 +17,18 @@
 	</div>
 	<div class="card-body">
 		<!-- Form Starts Here  -->
-		<form action="/jobs" method="POST">
+		<form action="/jobs" method="POST" id="formCreateJobs">
 			<div class="card shadow mt-3 mx-lg-5">
 				<div class="card-header border-light">
 					<div class="form-row">
 						<div class="form-group col">
 							<label for="inputJobId"><strong>Job ID</strong></label>
-							<input autofocus class="form-control" type="text" name="jobId" id="inputJobId" placeholder="YYTXXX (Year + Town + Number)" value="<%= newJob.jobId %>">
+							<input autofocus class="form-control" list="job-ids" type="text" name="jobId" id="inputJobId" placeholder="YYTXXX (Year + Town + Number)" value="<%= newJob.jobId %>">
+							<datalist id="job-ids">
+								<% maxJobIds.forEach(function(jobids){ %>
+									<option value="<%= jobids %>">
+								<% });%>
+							</datalist>
 						</div>
 						<div class="form-group col">
 							<label for="inputStatus"><strong>Job Status</strong></label>
@@ -195,7 +200,7 @@
 			</div>
 			
 			<div class="form-group mx-lg-5">
-				<button class="btn shadow-sm btn-md btn-outline-success btn-block">Save New Job</button>
+				<button type="submit" class="btn shadow-sm btn-md btn-outline-success btn-block">Save New Job</button>
 			</div>
 		</form>
 	<!-- Form Ends Here -->
