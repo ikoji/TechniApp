@@ -53,7 +53,7 @@ jobSchema.virtual('lastFirstName').get(function () {
 });
 
 jobSchema.virtual('fullAddress').get(function () {
-    return this.address.apartment + " " + this.address.street + ", " + this.address.city + " " + this.address.province + " " + this.address.postal;
+    return this.address.street + ", " + this.address.city + " " + this.address.province + " " + this.address.postal;
 });
 
 jobSchema.virtual('titleName').get(function () {
