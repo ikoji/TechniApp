@@ -22,6 +22,7 @@
 						<th class="align-middle" scope="col">Phone</th>
 						<th class="align-middle" scope="col">Status</th>
 						<th class="align-middle" scope="col">Updated</th>
+						<th class="align-middle" scope="col" hidden>Claim</th>
 					</tr>
 				</thead>
 				<tbody data-link="row" class="rowlink">
@@ -64,6 +65,9 @@
 							<% } %>
 							<td data-order="<%= moment(job.modifiedAt).format() %>" class="align-middle">
 								<%= moment(job.modifiedAt).fromNow() %>
+							</td>
+							<td class="align-middle" hidden>
+								<%- job.claimNum %>
 							</td>
 						</tr>
 					<% }); %>
