@@ -19,7 +19,6 @@
 						<th class="align-middle" scope="col">Job ID</th>
 						<th class="align-middle" scope="col">Name</th>
 						<th class="align-middle" scope="col">Address</th>
-						<th class="align-middle" scope="col">Phone</th>
 						<th class="align-middle" scope="col">Status</th>
 						<th class="align-middle" scope="col">Updated</th>
 						<th class="align-middle" scope="col" hidden>Claim</th>
@@ -42,9 +41,6 @@
 								<% } else { %>
 									<%- job.address.city %>
 								<% } %>
-							</td>
-							<td class="align-middle" style="white-space: nowrap;">
-								<%= job.phone %>
 							</td>
 							<% if(job.status === "Received"){ %>
 								<td data-order="1" class="align-middle"><%- job.status %></td>
