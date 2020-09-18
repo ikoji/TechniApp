@@ -18,7 +18,7 @@
 			<table class="table table-hover table-striped" id="usersTable" width="100%" cellspacing="0">
 				<thead>
 					<tr>
-						<th class="align-middle" scope="col">Username</th>
+						<th class="align-middle" scope="col" hidden>Username</th>
 						<th class="align-middle" scope="col">Name</th>
 						<th class="align-middle" scope="col">Title</th>
 						<th class="align-middle" scope="col">Phone</th>
@@ -28,7 +28,7 @@
 				<tbody data-link="row" class="rowlink">
 					<% users.forEach(function(user){ %>
 						<tr>
-							<td class="align-middle">
+							<td class="align-middle" hidden>
 								<a href="/users/<%= user._id %>/edit">
 									<strong><%- user.username %></strong>
 								</a>

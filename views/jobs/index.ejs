@@ -3,12 +3,16 @@
 <div class="card maincardbg shadow my-4 mx-md-5">
 	<div class="card-header shadow-sm bg-light">
 		<div class="no-gutters align-items-center d-flex justify-content-between">
-			<div class="">
-				<h3 class="headtitle text-dark"><strong>Jobs</strong></h3>
-			</div>
-			<div class="">
+			<% if(active){ %>
+				<h3 class="headtitle">
+					<strong>Jobs</strong>
+				</h3>
 				<a class="btn shadow-sm btn-outline-success btn-md" href="/jobs/new">Add New Job</a>
-			</div>
+			<% } else { %>
+				<h3 class="headtitle">
+					<strong>Archive</strong>
+				</h3>
+			<% } %>
 		</div>
 	</div>
 	<div class="card-body my-md-2" >
@@ -26,46 +30,48 @@
 				</thead>
 				<tbody data-link="row" class="rowlink">
 					<% jobs.forEach(function(job){ %>
-						<tr>
-							<td class="align-middle">
-								<a href="/jobs/<%= job._id %>">
-									<strong><%= job.jobId %></strong>
-								</a>
-							</td>
-							<td class="align-middle">
-								<%- job.titleName %>
-							</td>
-							<td class="align-middle">
-								<% if(job.address.street.length > 1) { %>
-									<%- job.address.street %>, <%- job.address.city %>
+						
+							<tr>
+								<td class="align-middle">
+									<a href="/jobs/<%= job._id %>">
+										<strong><%= job.jobId %></strong>
+									</a>
+								</td>
+								<td class="align-middle">
+									<%- job.titleName %>
+								</td>
+								<td class="align-middle">
+									<% if(job.address.street.length > 1) { %>
+										<%- job.address.street %>, <%- job.address.city %>
+									<% } else { %>
+										<%- job.address.city %>
+									<% } %>
+								</td>
+								<% if(job.status === "Received"){ %>
+									<td data-order="1" class="align-middle"><%- job.status %></td>
+								<% } else if(job.status === "Quoting") { %>
+									<td data-order="2" class="align-middle"><%- job.status %></td>
+								<% } else if(job.status === "Work in Progress") { %>
+									<td data-order="3" class="align-middle"><%- job.status %></td>
+								<% } else if(job.status === "Work Finished") { %>
+									<td data-order="5" class="align-middle"><%- job.status %></td>
+								<% } else if(job.status === "Waiting for Payment") { %>
+									<td data-order="6" class="align-middle"><%- job.status %></td>
+								<% } else if(job.status === "Job Complete") { %>
+									<td data-order="7" class="align-middle"><%- job.status %></td>
+								<% } else if(job.status === "On Hold") { %>
+									<td data-order="4" class="align-middle"><%- job.status %></td>
 								<% } else { %>
-									<%- job.address.city %>
+									<td data-order="8" class="align-middle"><%- job.status %></td>
 								<% } %>
-							</td>
-							<% if(job.status === "Received"){ %>
-								<td data-order="1" class="align-middle"><%- job.status %></td>
-							<% } else if(job.status === "Quoting") { %>
-								<td data-order="2" class="align-middle"><%- job.status %></td>
-							<% } else if(job.status === "Work in Progress") { %>
-								<td data-order="3" class="align-middle"><%- job.status %></td>
-							<% } else if(job.status === "Work Finished") { %>
-								<td data-order="5" class="align-middle"><%- job.status %></td>
-							<% } else if(job.status === "Waiting for Payment") { %>
-								<td data-order="6" class="align-middle"><%- job.status %></td>
-							<% } else if(job.status === "Job Complete") { %>
-								<td data-order="7" class="align-middle"><%- job.status %></td>
-							<% } else if(job.status === "On Hold") { %>
-								<td data-order="4" class="align-middle"><%- job.status %></td>
-							<% } else { %>
-								<td data-order="8" class="align-middle"><%- job.status %></td>
-							<% } %>
-							<td data-order="<%= moment(job.modifiedAt).format() %>" class="align-middle">
-								<%= moment(job.modifiedAt).fromNow() %>
-							</td>
-							<td class="align-middle" hidden>
-								<%- job.claimNum %>
-							</td>
-						</tr>
+								<td data-order="<%= moment(job.modifiedAt).format() %>" class="align-middle">
+									<%= moment(job.modifiedAt).fromNow() %>
+								</td>
+								<td class="align-middle" hidden>
+									<%- job.claimNum %>
+								</td>
+							</tr>
+						
 					<% }); %>
 				</tbody>
 			</table>
