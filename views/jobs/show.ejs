@@ -232,9 +232,9 @@
 						<!--check if comment has been edited or is original and show when last edited-->
 						<span class="small">
 							<% if(moment(comment.modifiedAt).isAfter(comment.createdAt)){ %>
-							Edited <%= moment(comment.modifiedAt).utcOffset(-7).calendar() %>
+							Edited <%= moment(comment.modifiedAt).utcOffset(-8).calendar() %>
 							<% } else { %>
-							Created <%= moment(comment.createdAt).utcOffset(-7).calendar() %>
+							Created <%= moment(comment.createdAt).utcOffset(-8).calendar() %>
 							<% } %>
 						</span>
 					</div>
