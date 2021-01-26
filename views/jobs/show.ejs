@@ -7,7 +7,12 @@
 				<nav aria-label="breadcrumb">
 					<h3 class="headtitle">
 						<ol class="breadcrumb bg-transparent headtitle">
-							<li class="breadcrumb-item"><a class="text-dark" href="/jobs/"><strong>Jobs</strong></a>
+							<li class="breadcrumb-item">
+								<% if(job.status === "Job Complete"){ %>
+									<a class="text-dark" href="/jobs/archive"><strong>Archive</strong></a>
+								<% } else { %>
+									<a class="text-dark" href="/jobs/"><strong>Jobs</strong></a>
+								<% } %>
 							</li>
 							<li class="breadcrumb-item active" aria-current="page"><%= job.jobId %> -
 								<%- job.titleName %></li>
@@ -253,7 +258,11 @@
 		</div>
 	</div>
 	<div class="card-footer shadow-sm bg-light">
-		<a class="btn shadow-sm btn-sm btn-outline-secondary" href="/jobs">Go Back</a>
+		<% if(job.status === "Job Complete"){ %>
+			<a class="btn shadow-sm btn-sm btn-outline-secondary" href="/jobs/archive">Go Back</a>
+		<% } else { %>
+			<a class="btn shadow-sm btn-sm btn-outline-secondary" href="/jobs">Go Back</a>
+		<% } %>
 	</div>
 </div>
 
